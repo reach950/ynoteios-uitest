@@ -6,3 +6,4 @@ __author__ = 'kejie'
 
 from .recent_page import RecentPage
 from .note_page import NotePage
+from .page_common_module import TabBar, CreateButtonsLayer

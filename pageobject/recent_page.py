@@ -7,18 +7,10 @@ __author__ = 'kejie'
 
 from pageobject.base_page import BasePage
 from appium.webdriver.common.mobileby import MobileBy
+from pageobject import TabBar, CreateButtonsLayer
 
 
 class RecentPage(BasePage):
-
-    # tabbar的创建按钮
-    create_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTabBar/**/XCUIElementTypeButton[3]')
-
-    # 关闭创建列表按钮
-    create_close_button_loc = (MobileBy.ACCESSIBILITY_ID, 'create note close')
-
-    # 创建笔记按钮
-    create_note_buuton_loc = (MobileBy.ACCESSIBILITY_ID, 'newNote-note')
 
     # 新创建笔记标题
     first_note_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[2]')
@@ -31,8 +23,8 @@ class RecentPage(BasePage):
 
     # 打开创建笔记页面
     def open_create_note(self):
-        self.tap_element(self.create_button_loc)
-        self.tap_element(self.create_note_buuton_loc)
+        self.tap_element(TabBar.create_button_loc)
+        self.tap_element(CreateButtonsLayer.create_note_buuton_loc)
 
     # 获取新创建笔记的标题
     def get_first_note_title(self):
@@ -42,4 +34,3 @@ class RecentPage(BasePage):
     def delete_first_file(self):
         self.swipe('left', self.first_file)
         self.tap_element(self.delete_button)
-
