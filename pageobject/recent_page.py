@@ -23,32 +23,23 @@ class RecentPage(BasePage):
     # 新创建笔记标题
     first_note_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[2]')
 
-    # 最新文件
+    # 第一个文件
     first_file = (MobileBy.CLASS_NAME, 'XCUIElementTypeCell')
 
     # 删除按钮
     delete_button = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[3]')
 
-    # 点击创建按钮
-    def tap_create_button(self):
+    # 打开创建笔记页面
+    def open_create_note(self):
         self.tap_element(self.create_button_loc)
-
-    # 点击创建笔记按钮
-    def tap_create_note_button(self):
         self.tap_element(self.create_note_buuton_loc)
-
-    # 浮层是否显示
-    def supernatant_is_display(self):
-        return self.find_element(self.create_close_button_loc).is_displayed()
 
     # 获取新创建笔记的标题
     def get_first_note_title(self):
         return self.find_element(self.first_note_title_loc).get_attribute('value')
 
-    # 向左滑动最新文件
-    def swipe_left_first_file(self):
+    # 删除第一个文件
+    def delete_first_file(self):
         self.swipe('left', self.first_file)
-
-    # 点击删除按钮
-    def tap_delete_button(self):
         self.tap_element(self.delete_button)
+

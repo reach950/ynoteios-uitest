@@ -25,10 +25,7 @@ class TestCreateNote(unittest.TestCase):
 
         recent_page = po.RecentPage(self.driver)
         note_page = po.NotePage(self.driver)
-        recent_page.tap_create_button()
-        # 检查浮层是否显示
-        self.assertTrue(recent_page.supernatant_is_display(), '未弹出创建浮层')
-        recent_page.tap_create_note_button()
+        recent_page.open_create_note()
         note_page.input_note_title(self.title)
         note_page.tap_complete_button_loc()
         note_page.tap_return_button_loc()
