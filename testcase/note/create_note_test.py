@@ -31,6 +31,8 @@ class TestCreateNote(unittest.TestCase):
         note_page.tap_return_button_loc()
         # 检查新创建的笔记是否在最新列表中显示
         self.assertEqual(recent_page.get_first_note_title(), self.title, '笔记创建失败')
+        recent_page.delete_first_file()
+        self.assertNotEqual(recent_page.get_first_note_title(), self.title, '笔记删除失败')
 
 
 if __name__ == '__main__':

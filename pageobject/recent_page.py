@@ -34,3 +34,4 @@ class RecentPage(BasePage):
     def delete_first_file(self):
         self.swipe('left', self.first_file)
         self.tap_element(self.delete_button)
+        self.click_alert_button('删除')

@@ -60,6 +60,15 @@ class BasePage:
         else:
             self.driver.execute_script('mobile: swipe', {'direction': direct})
 
+    def click_alert_button(self, button_lable, action='accept'):
+        """
+        警告框处理
+        :param button_lable: 警告框按钮的标签文本
+        :param action: 按钮处理，只支持accept，dismiss两个值
+        :return:
+        """
+        self.driver.execute_script('mobile: alert', {'action': action, 'buttonLabel': button_lable})
+
 
 if __name__ == '__main__':
     pass
