@@ -7,7 +7,7 @@ __author__ = 'kejie'
 
 from pageobject.base_page import BasePage
 from appium.webdriver.common.mobileby import MobileBy
-from pageobject import TabBar, CreateButtonsLayer
+from pageobject.page_common_module import TabBar, CreateButtonsLayer
 
 
 class RecentPage(BasePage):
