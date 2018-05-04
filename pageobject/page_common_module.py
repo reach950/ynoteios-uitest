@@ -27,3 +27,6 @@ class TabBar:
 
     # tabbar的创建按钮
     create_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTabBar/**/XCUIElementTypeButton[3]')
+
+    # 文件夹
+    folder_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTabBar/**/XCUIElementTypeButton[2]')

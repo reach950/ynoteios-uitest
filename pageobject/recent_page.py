@@ -34,4 +34,7 @@ class RecentPage(BasePage):
     def delete_first_file(self):
         self.swipe('left', self.first_file)
         self.tap_element(self.delete_button)
-        self.click_alert_button('删除')
+
+    # 切换到文件夹
+    def switch_to_folder_page(self):
+        self.tap_element(TabBar.folder_button_loc)

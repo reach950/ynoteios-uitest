@@ -6,3 +6,4 @@ __author__ = 'kejie'
 
 from .recent_page import RecentPage
 from .note_page import NotePage
+from .folder_page import FolderPage

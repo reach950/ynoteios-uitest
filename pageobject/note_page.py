@@ -20,14 +20,31 @@ class NotePage(BasePage):
     # 返回按钮
     return_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[1]')
 
+    # 分享按钮
+    share_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[-2]')
+
+    # 复制分享链接按钮
+    copy_share_link_loc = (MobileBy.ACCESSIBILITY_ID, 'copyShareLink')
+
     # 输入笔记标题
     def input_note_title(self, value):
         self.send_keys(self.note_title_loc, value)
 
     # 点击完成
-    def tap_complete_button_loc(self):
+    def tap_complete_button(self):
         self.tap_element(self.complete_button_loc)
 
     # 点击返回
-    def tap_return_button_loc(self):
+    def tap_return_button(self):
         self.tap_element(self.return_button_loc)
+
+    # 点击分享
+    def tap_share_button(self):
+        self.tap_element(self.share_button_loc)
+
+    # 复制分享链接
+    def copy_share_link(self):
+        self.tap_element(self.copy_share_link_loc)
+        self.click_alert_button('确定')
+
+

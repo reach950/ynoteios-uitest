@@ -69,6 +69,22 @@ class BasePage:
         """
         self.driver.execute_script('mobile: alert', {'action': action, 'buttonLabel': button_lable})
 
+    def set_clipboard_text(self, text):
+        """
+        设置剪切板内容
+        :param text:
+        :return:
+        """
+        self.driver.set_clipboard_text(text)
+
+    def get_clipboard_text(self):
+        """
+        获取剪切板内容
+        :return:
+        """
+        return self.driver.get_clipboard_text()
+
+
 
 if __name__ == '__main__':
     pass
