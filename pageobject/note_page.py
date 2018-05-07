@@ -7,6 +7,7 @@ __author__ = 'kejie'
 
 from pageobject.base_page import BasePage
 from appium.webdriver.common.mobileby import MobileBy
+import time
 
 
 class NotePage(BasePage):
@@ -45,6 +46,8 @@ class NotePage(BasePage):
     # 复制分享链接
     def copy_share_link(self):
         self.tap_element(self.copy_share_link_loc)
-        self.click_alert_button('确定')
+        # self.click_alert_button('确定')
+        time.sleep(3)
+
 
 
