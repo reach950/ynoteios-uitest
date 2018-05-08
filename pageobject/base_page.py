@@ -71,19 +71,18 @@ class BasePage:
 
     def set_clipboard_text(self, text):
         """
-        设置剪切板内容
+        设置剪切板内容，默认UTF-8，只支持模拟器，真机不支持
         :param text:
         :return:
         """
-        self.driver.set_clipboard_text(text)
+        self.driver.execute_script("mobile: setPasteboard", {'content': text, 'encoding': 'UTF-8'})
 
     def get_clipboard_text(self):
         """
-        获取剪切板内容
+        获取剪切板内容，默认UTF-8，只支持模拟器，真机不支持
         :return:
         """
-        return self.driver.get_clipboard_text()
-
+        return self.driver.execute_script('mobile: getPasteboard', {'encoding': 'UTF-8'})
 
 
 if __name__ == '__main__':
