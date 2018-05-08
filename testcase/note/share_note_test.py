@@ -29,7 +29,8 @@ class TestShareNote(unittest.TestCase):
         self.folder_page.open_first_file()
         self.note_page.tap_share_button()
         self.note_page.copy_share_link()
-        print(self.note_page.get_clipboard_text())
+        self.assertTrue(self.note_page.is_copy_share_link_success())
+        self.note_page.click_alert_button('确定')
 
 
 if __name__ == '__main__':
