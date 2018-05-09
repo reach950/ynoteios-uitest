@@ -26,7 +26,7 @@ class RecentPage(BasePage):
     # 根据文本内容获取第一个文件的标题
     def get_first_file_title(self, text):
         first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, u'**/XCUIElementTypeCell/XCUIElementTypeStaticText'
-                                                          u'[`name == {}`]'.format(text))
+                                                          u'[`name == \"{}\"`]'.format(text))
         return self.find_element(first_file_title_loc)
 
     # 删除第一个文件
