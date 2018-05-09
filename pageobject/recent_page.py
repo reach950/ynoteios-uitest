@@ -12,14 +12,17 @@ from pageobject.page_common_module import TabBar, CreateButtonsLayer
 
 class RecentPage(BasePage):
 
+    # 创建scan按钮
+    create_scan_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[1]')
+
     # 第一个文件
-    first_file = (MobileBy.CLASS_NAME, 'XCUIElementTypeCell')
+    first_file_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeCell')
 
     # 第一个文件标题
     first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[2]')
 
     # 第一个文件的删除按钮
-    first_file_delete_button = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[3]')
+    first_file_delete_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[3]')
 
     # 打开创建笔记页面
     def open_create_note(self):
@@ -32,10 +35,18 @@ class RecentPage(BasePage):
 
     # 删除第一个文件
     def delete_first_file(self):
-        self.swipe('left', self.first_file)
-        self.tap_element(self.first_file_delete_button)
+        self.swipe('left', self.first_file_loc)
+        self.tap_element(self.first_file_delete_button_loc)
         self.click_alert_button('删除')
 
     # 切换到文件夹
     def switch_to_folder_page(self):
         self.tap_element(TabBar.folder_button_loc)
+
+    # 打开创建scan页面
+    def open_create_scan(self, is_from_tabbar=False):
+        if is_from_tabbar:
+            self.tap_element(TabBar.create_button_loc)
+            self.tap_element(CreateButtonsLayer.create_scan_buuton_loc)
+        else:
+            self.tap_element(self.create_scan_button_loc)

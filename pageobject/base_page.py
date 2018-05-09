@@ -60,6 +60,13 @@ class BasePage:
         else:
             self.driver.execute_script('mobile: swipe', {'direction': direct})
 
+    def get_alert_buttons(self):
+        """
+        获取当前警告框的按钮名称
+        :return:
+        """
+        return self.driver.execute_script('mobile: alert', {'action': 'getButtons'})
+
     def click_alert_button(self, button_lable, action='accept'):
         """
         警告框处理
