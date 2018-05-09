@@ -15,24 +15,25 @@ class RecentPage(BasePage):
     # 第一个文件
     first_file = (MobileBy.CLASS_NAME, 'XCUIElementTypeCell')
 
+    # 第一个文件标题
+    first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[2]')
+
     # 第一个文件的删除按钮
-    delete_button = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[3]')
+    first_file_delete_button = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[3]')
 
     # 打开创建笔记页面
     def open_create_note(self):
         self.tap_element(TabBar.create_button_loc)
         self.tap_element(CreateButtonsLayer.create_note_buuton_loc)
 
-    # 根据文本内容获取第一个文件的标题
-    def get_first_file_title(self, text):
-        first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, u'**/XCUIElementTypeCell/XCUIElementTypeStaticText'
-                                                          u'[`name == \"{}\"`]'.format(text))
-        return self.find_element(first_file_title_loc)
+    # 获取第一个文件的标题
+    def get_first_file_title(self):
+        return self.find_element(self.first_file_title_loc).get_attribute('value')
 
     # 删除第一个文件
     def delete_first_file(self):
         self.swipe('left', self.first_file)
-        self.tap_element(self.delete_button)
+        self.tap_element(self.first_file_delete_button)
         self.click_alert_button('删除')
 
     # 切换到文件夹
