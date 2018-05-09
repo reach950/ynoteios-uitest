@@ -11,7 +11,7 @@ from lib import AppiumDriver
 from lib import get_time
 
 
-class TestCreateDeleteNote(unittest.TestCase):
+class TestCreateNote(unittest.TestCase):
 
     def setUp(self):
         # 打开Appium服务器，start server后，尝试启动被测App
@@ -28,10 +28,11 @@ class TestCreateDeleteNote(unittest.TestCase):
         self.note_page.input_note_title(self.title)
         self.note_page.tap_complete_button()
         self.note_page.tap_return_button()
-        # 检查新创建的笔记是否在最新列表中显示
-        self.assertIsNotNone(self.recent_page.get_first_file_title(self.title), '笔记创建失败')
+        # 检查新创建的笔记是否是最新列表中第一个文件
+        self.assertEqual(self.recent_page.get_first_file_title(), self.title, '笔记创建失败')
         self.recent_page.delete_first_file()
-        self.assertIsNone(self.recent_page.get_first_file_title(self.title), '笔记删除失败')
+        # 检查笔记是否删除
+        self.assertNotEqual(self.recent_page.get_first_file_title(), self.title, '笔记删除失败')
 
 
 if __name__ == '__main__':
