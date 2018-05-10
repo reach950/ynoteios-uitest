@@ -21,9 +21,6 @@ class RecentPage(BasePage):
     # 第一个文件
     first_file_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeCell')
 
-    # 第一个文件标题
-    first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[2]')
-
     # 第一个文件的删除按钮
     first_file_delete_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[3]')
 
@@ -33,8 +30,16 @@ class RecentPage(BasePage):
         self.tap_element(CreateButtonsLayer.create_note_buuton_loc)
 
     # 获取第一个文件的标题
-    def get_first_file_title(self):
-        return self.find_element(self.first_file_title_loc).get_attribute('value')
+    def get_first_file_title(self, file_type):
+        index = 0
+        if file_type == 'note':
+            index = 2
+        elif file_type == 'audio':
+            index = 3
+        # 第一个文件标题
+        first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[{}]'
+                                .format(str(index)))
+        return self.find_element(first_file_title_loc).get_attribute('value')
 
     # 删除第一个文件
     def delete_first_file(self):
