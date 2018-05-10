@@ -15,6 +15,9 @@ class RecentPage(BasePage):
     # 创建scan按钮
     create_scan_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[1]')
 
+    # 创建audio按钮
+    create_audio_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[3]')
+
     # 第一个文件
     first_file_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeCell')
 
@@ -50,3 +53,11 @@ class RecentPage(BasePage):
             self.tap_element(CreateButtonsLayer.create_scan_buuton_loc)
         else:
             self.tap_element(self.create_scan_button_loc)
+
+    # 打开创建audio页面
+    def open_create_audio(self, is_from_tabbar=False):
+        if is_from_tabbar:
+            self.tap_element(TabBar.create_button_loc)
+            self.tap_element(CreateButtonsLayer.create_audio_buuton_loc)
+        else:
+            self.tap_element(self.create_audio_button_loc)

@@ -11,3 +11,5 @@ from .scan.add_photos_page import AddPhotosPage
 from .scan.preview_photos_page import PreviewPhotosPage
 from .scan.scan_page import ScanPage
 from .scan.album_page import AlbumPage
+from .audio.audio_page import AudioPage
+from .audio.record_page import RecordPage
