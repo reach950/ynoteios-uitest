@@ -6,25 +6,18 @@
 __author__ = 'kejie'
 
 import unittest
-import pageobject as po
-from lib import AppiumDriver
 from lib import get_time
+from testcase.base_case import BaseCase
 
 
-class TestCreateDeleteScan(unittest.TestCase):
+class TestCreateDeleteScan(BaseCase):
 
     def setUp(self):
-        # 打开Appium服务器，start server后，尝试启动被测App
-        self.driver = AppiumDriver().get_driver()
-        self.recent_page = po.RecentPage(self.driver)
-        self.add_photos_page = po.AddPhotosPage(self.driver)
-        self.preview_photos_page = po.PreviewPhotosPage(self.driver)
-        self.scan_page = po.ScanPage(self.driver)
-        self.album_page = po.AlbumPage(self.driver)
         self.title = u'create_scan_{}'.format(get_time())
+        super().setUp()
 
     def tearDown(self):
-        self.driver.quit()
+        super().tearDown()
 
     def test_create_delete_scan(self):
         self.recent_page.open_create_scan()

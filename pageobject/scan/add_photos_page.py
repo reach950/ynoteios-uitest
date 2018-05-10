@@ -41,5 +41,9 @@ class AddPhotosPage(BasePage):
 
     # 如果需要摄像头和相册的系统权限，选是
     def get_camera_album_right(self):
-        if '好' in self.get_alert_buttons():
+        try:
+            get_alert_buttons()
+        except:
+            return
+        else:
             self.click_alert_button('好')
