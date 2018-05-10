@@ -19,7 +19,7 @@ class TestCreateDeleteAudio(BaseCase):
         super().tearDown()
 
     def test_create_delete_audio(self):
-        self.recent_page.open_create_scan()
+        self.recent_page.open_create_audio()
         self.record_page.start_record()
         # 获取麦克风权限
         self.record_page.accept_alert()
