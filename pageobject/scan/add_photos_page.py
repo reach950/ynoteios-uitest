@@ -38,12 +38,3 @@ class AddPhotosPage(BasePage):
     # 点击完成
     def tap_complete_button(self):
         self.tap_element(self.complete_button_loc)
-
-    # 如果需要摄像头和相册的系统权限，选是
-    def get_camera_album_right(self):
-        try:
-            get_alert_buttons()
-        except:
-            return
-        else:
-            self.click_alert_button('好')

@@ -6,21 +6,16 @@
 __author__ = 'kejie'
 
 import unittest
-import pageobject as po
-from lib import AppiumDriver
+from testcase import BaseCase
 
 
-class TestShareNote(unittest.TestCase):
+class TestShareNote(BaseCase):
 
     def setUp(self):
-        # 打开Appium服务器，start server后，尝试启动被测App
-        self.driver = AppiumDriver().get_driver()
-        self.recent_page = po.RecentPage(self.driver)
-        self.note_page = po.NotePage(self.driver)
-        self.folder_page = po.FolderPage(self.driver)
+        super().setUp()
 
     def tearDown(self):
-        self.driver.quit()
+        super().tearDown()
 
     def test_copy_share_link(self):
         # 测试复制分享链接

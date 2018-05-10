@@ -91,6 +91,21 @@ class BasePage:
         """
         return self.driver.execute_script('mobile: getPasteboard', {'encoding': 'UTF-8'})
 
+    def accept_alert(self):
+        """
+        如果弹出警告框，就接受
+        :return:
+        """
+        try:
+            buttons = self.get_alert_buttons()
+        except:
+            return
+        else:
+            btns = {u'好', u'允许'}.intersection(buttons)
+            if len(btns) == 0:
+                raise RuntimeError(u'警告框无法接受, buttons: {}'.format(', '.join(buttons)))
+            self.click_alert_button(list(btns)[0])
+
 
 if __name__ == '__main__':
     pass

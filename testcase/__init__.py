@@ -3,3 +3,5 @@
 """文档注释"""
 
 __author__ = 'kejie'
+
+from .base_case import BaseCase

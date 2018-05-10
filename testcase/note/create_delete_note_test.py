@@ -6,22 +6,19 @@
 __author__ = 'kejie'
 
 import unittest
-import pageobject as po
-from lib import AppiumDriver
+from testcase import BaseCase
 from lib import get_time
 
 
-class TestCreateNote(unittest.TestCase):
+class TestCreateNote(BaseCase):
 
     def setUp(self):
-        # 打开Appium服务器，start server后，尝试启动被测App
-        self.driver = AppiumDriver().get_driver()
+        # 生成笔记标题
         self.title = u'create_textnote_{}'.format(get_time())
-        self.recent_page = po.RecentPage(self.driver)
-        self.note_page = po.NotePage(self.driver)
+        super().setUp()
 
     def tearDown(self):
-        self.driver.quit()
+        super().tearDown()
 
     def test_create_delete_note(self):
         self.recent_page.open_create_note()

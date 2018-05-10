@@ -7,12 +7,13 @@ __author__ = 'kejie'
 
 import unittest
 from lib import get_time
-from testcase.base_case import BaseCase
+from testcase import BaseCase
 
 
 class TestCreateDeleteScan(BaseCase):
 
     def setUp(self):
+        # 生成scan标题
         self.title = u'create_scan_{}'.format(get_time())
         super().setUp()
 
@@ -22,10 +23,10 @@ class TestCreateDeleteScan(BaseCase):
     def test_create_delete_scan(self):
         self.recent_page.open_create_scan()
         # 获取摄像头权限
-        self.add_photos_page.get_camera_album_right()
+        self.add_photos_page.accept_alert()
         self.add_photos_page.tap_album_button()
         # 获取相册权限
-        self.add_photos_page.get_camera_album_right()
+        self.add_photos_page.accept_alert()
         # 完成按钮为disable状态
         self.assertFalse(self.album_page.is_complete_button_enabled())
         self.album_page.tap_first_photo()
