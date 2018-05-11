@@ -15,6 +15,9 @@ class ScanPage(BasePage):
     # 添加照片按钮
     add_photos_button_loc = (MobileBy.ACCESSIBILITY_ID, 'scanview addscan')
 
+    # 返回按钮
+    return_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[1]')
+
     # 更多操作列表按钮
     multi_operation_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[3]')
 
@@ -27,3 +30,7 @@ class ScanPage(BasePage):
         self.tap_element(self.multi_operation_button_loc)
         self.tap_element(MultiOperationList.delete_button_loc)
         self.tap_element(MultiOperationList.sheet_delete_button_loc)
+
+    # 点击返回
+    def tap_return_button(self):
+        self.tap_element(self.return_button_loc)

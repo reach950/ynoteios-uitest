@@ -36,8 +36,10 @@ class TestCreateDeleteScan(BaseCase):
         self.add_photos_page.tap_complete_button()
         # 返回到文档扫描详情页面
         self.assertTrue(self.scan_page.is_scan_page_display())
-        # 删除文档扫描
-        self.scan_page.delete_scan()
+        self.scan_page.tap_return_button()
+        # 检查新创建的文档扫描是否是最新列表中第一个文件
+        self.assertEqual(self.recent_page.get_first_file_title('markdown'), self.title, 'markdown创建失败')
+        self.recent_page.delete_first_file()
 
 
 if __name__ == '__main__':

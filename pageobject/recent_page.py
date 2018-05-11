@@ -21,14 +21,6 @@ class RecentPage(BasePage):
     # 第一个文件
     first_file_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeCell')
 
-    # 第一个文件的删除按钮
-    first_file_delete_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[3]')
-
-    # 打开创建笔记页面
-    def open_create_note(self):
-        self.tap_element(TabBar.create_button_loc)
-        self.tap_element(CreateButtonsLayer.create_note_buuton_loc)
-
     # 获取第一个文件的标题
     def get_first_file_title(self, file_type):
         index = 0
@@ -36,15 +28,32 @@ class RecentPage(BasePage):
             index = 2
         elif file_type == 'audio':
             index = 3
+        elif file_type == 'markdown':
+            index = 2
         # 第一个文件标题
         first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[{}]'
                                 .format(str(index)))
         return self.find_element(first_file_title_loc).get_attribute('value')
 
+    # 获取第一个文件的删除按钮
+    @classmethod
+    def get_first_file_delete_button(cls, is_sync=False):
+        if is_sync:
+            index = 3
+        else:
+            index = 4
+        # 第一个文件的删除按钮
+        return MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[{}]'.format(str(index))
+
+    # 打开创建笔记页面
+    def open_create_note(self):
+        self.tap_element(TabBar.create_button_loc)
+        self.tap_element(CreateButtonsLayer.create_note_buuton_loc)
+
     # 删除第一个文件
     def delete_first_file(self):
         self.swipe('left', self.first_file_loc)
-        self.tap_element(self.first_file_delete_button_loc)
+        self.tap_element(self.get_first_file_delete_button())
         self.click_alert_button('删除')
 
     # 切换到文件夹
