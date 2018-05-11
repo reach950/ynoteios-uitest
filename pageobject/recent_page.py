@@ -21,6 +21,9 @@ class RecentPage(BasePage):
     # 第一个文件
     first_file_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeCell')
 
+    # 链接收藏输入框
+    link_collect_textview_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeAlert/**/XCUIElementTextView')
+
     # 获取第一个文件的标题
     def get_first_file_title(self, file_type):
         index = 0
@@ -80,3 +83,7 @@ class RecentPage(BasePage):
     def open_create_markdown(self):
         self.tap_element(TabBar.create_button_loc)
         self.tap_element(CreateButtonsLayer.create_markdown_button_loc)
+
+    # 输入收藏的链接
+    def input_link(self, url):
+        self.send_keys(self.link_collect_textview_loc, url)
