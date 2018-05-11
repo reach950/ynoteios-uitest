@@ -13,3 +13,4 @@ from .scan.scan_page import ScanPage
 from .scan.album_page import AlbumPage
 from .audio.audio_page import AudioPage
 from .audio.record_page import RecordPage
+from .markdown_page import MarkdownPage
