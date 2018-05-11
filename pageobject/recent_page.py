@@ -66,3 +66,8 @@ class RecentPage(BasePage):
             self.tap_element(CreateButtonsLayer.create_audio_buuton_loc)
         else:
             self.tap_element(self.create_audio_button_loc)
+
+    # 打开创建笔记页面
+    def open_create_markdown(self):
+        self.tap_element(TabBar.create_button_loc)
+        self.tap_element(CreateButtonsLayer.create_markdown_button_loc)

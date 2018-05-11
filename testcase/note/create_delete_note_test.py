@@ -10,7 +10,7 @@ from testcase import BaseCase
 from lib import get_time
 
 
-class TestCreateNote(BaseCase):
+class TestCreateDeleteNote(BaseCase):
 
     def setUp(self):
         # 生成笔记标题
