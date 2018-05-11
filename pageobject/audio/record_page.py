@@ -24,7 +24,8 @@ class RecordPage(BasePage):
     record_complete_button_loc = (MobileBy.ACCESSIBILITY_ID, '完成')
 
     # 录音时间的秒数
-    record_time_second_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeStaticText[3]')
+    record_time_second_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[$type == "XCUIElementTypeStaticText"'
+                                                        ' AND name == "秒"$]/XCUIElementTypeStaticText[3]')
 
     # 开始录音
     def start_record(self):
@@ -40,4 +41,7 @@ class RecordPage(BasePage):
 
     # 获取录音时间
     def get_record_time(self):
+        temp = self.find_elements((MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeStaticText'))
+        for i in temp:
+            print(i.get_attribute('value'))
         return int(self.find_element(self.record_time_second_loc).get_attribute('value'))
