@@ -22,7 +22,7 @@ class RecentPage(BasePage):
     first_file_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeCell')
 
     # 链接收藏输入框
-    link_collect_textview_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeAlert/**/XCUIElementTextView')
+    link_collect_textview_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTextView" AND enabled == 1')
 
     # 获取第一个文件的标题
     def get_first_file_title(self, file_type):
@@ -38,15 +38,16 @@ class RecentPage(BasePage):
                                 .format(str(index)))
         return self.find_element(first_file_title_loc).get_attribute('value')
 
-    # 获取第一个文件的删除按钮
-    @classmethod
-    def get_first_file_delete_button(cls, is_sync=False):
+    # 点击第一个文件的删除按钮
+    def click_first_file_delete_button(self, is_sync=False):
         if is_sync:
             index = 3
         else:
             index = 4
         # 第一个文件的删除按钮
-        return MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[{}]'.format(str(index))
+        first_file_delete_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[{}]'
+                                        .format(str(index)))
+        self.tap_element(first_file_delete_button_loc)
 
     # 打开创建笔记页面
     def open_create_note(self):
@@ -54,9 +55,12 @@ class RecentPage(BasePage):
         self.tap_element(CreateButtonsLayer.create_note_buuton_loc)
 
     # 删除第一个文件
-    def delete_first_file(self):
+    def delete_first_file(self, is_sync=False):
         self.swipe('left', self.first_file_loc)
-        self.tap_element(self.get_first_file_delete_button())
+        if is_sync:
+            self.click_first_file_delete_button(is_sync)
+        else:
+            self.click_first_file_delete_button()
         self.click_alert_button('删除')
 
     # 切换到文件夹
@@ -79,10 +83,15 @@ class RecentPage(BasePage):
         else:
             self.tap_element(self.create_audio_button_loc)
 
-    # 打开创建笔记页面
+    # 打开创建markdown页面
     def open_create_markdown(self):
         self.tap_element(TabBar.create_button_loc)
         self.tap_element(CreateButtonsLayer.create_markdown_button_loc)
+
+    # 打开创建链接收藏笔记
+    def open_create_link_collect_note(self):
+        self.tap_element(TabBar.create_button_loc)
+        self.tap_element(CreateButtonsLayer.link_collect_button_loc)
 
     # 输入收藏的链接
     def input_link(self, url):

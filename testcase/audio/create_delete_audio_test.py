@@ -34,7 +34,7 @@ class TestCreateDeleteAudio(BaseCase):
         audio_title = self.audio_page.get_audio_title()
         self.audio_page.tap_return_button()
         self.assertEqual(self.recent_page.get_first_file_title('audio'), audio_title, '语音速记创建失败')
-        self.recent_page.delete_first_file()
+        self.recent_page.delete_first_file(is_sync=True)
 
 
 if __name__ == '__main__':
