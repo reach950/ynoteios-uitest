@@ -22,7 +22,7 @@ class RecentPage(BasePage):
     first_file_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeCell')
 
     # 链接收藏输入框
-    link_collect_textview_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTextView" AND enabled == 1')
+    link_collect_textview_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeTextView" AND enabled == 1')
 
     # 获取第一个文件的标题
     def get_first_file_title(self, file_type):

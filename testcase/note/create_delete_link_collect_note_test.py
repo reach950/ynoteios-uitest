@@ -23,7 +23,7 @@ class TestCreateDeleteLinkCollectNote(BaseCase):
         self.recent_page.click_alert_button('确认')
         # 检查新创建的链接收藏笔记是否是最新列表中第一个文件
         self.assertEqual(self.recent_page.get_first_file_title('note'), '有道首页', '笔记创建失败')
-        self.recent_page.delete_first_file()
+        self.recent_page.delete_first_file(is_sync=True)
         # 检查链接收藏笔记是否删除
         self.assertNotEqual(self.recent_page.get_first_file_title('note'), '有道首页', '笔记删除失败')
 
