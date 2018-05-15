@@ -22,7 +22,7 @@ class BasePage:
             WebDriverWait(self.driver, wait).until(lambda driver: driver.find_element(*loc))
             return self.driver.find_element(*loc)
         except WebDriverException:
-            logging.error(u'{} 页面中未能找到 {} 元素'.format(self, loc))
+            logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
 
     # 重新封装一组元素定位方法
     def find_elements(self, loc):
@@ -30,24 +30,19 @@ class BasePage:
             if len(self.driver.find_elements(*loc)):
                 return self.driver.find_elements(*loc)
         except WebDriverException:
-            logging.error(u'{} 页面中未能找到 {} 元素'.format(self, loc))
+            logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
 
     # 重新封装元素点击操作
     def tap_element(self, loc, x=0.0, y=0.0):
         self.driver.execute_script('mobile: tap', {'x': x, 'y': y, 'element': self.find_element(loc)})
 
     # 重新封装输入操作
-    def send_keys(self, loc, value, attempts=5):
+    def send_keys(self, loc, value):
         ele = self.find_element(loc)
-        if attempts == 0:
-            raise WebDriverException(msg=u'{} 页面中 {} 元素输入文本失败!'.format(self, loc))
-        else:
-            try:
-                logging.info(u'尝试在 {} 页面中 {} 元素输入文本(剩余次数: {})'.format(self, loc, attempts))
-                ele.set_value(value)
-            except WebDriverException:
-                logging.warning(u'输入文本失败!')
-                return self.send_keys(loc, value, attempts-1)
+        try:
+            ele.set_value(value)
+        except WebDriverException:
+            logging.error(u'{} 页面中 {} 元素输入文本失败！'.format(self, loc))
 
     # 重新封装滑动操作
     def swipe(self, direct, loc=None):

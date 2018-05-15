@@ -35,7 +35,7 @@ class RecentPage(BasePage):
             index = 2
         # 第一个文件标题
         first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[{}]'
-                                .format(str(index)))
+                                .format(index))
         return self.find_element(first_file_title_loc).get_attribute('value')
 
     # 点击第一个文件的删除按钮
@@ -46,7 +46,7 @@ class RecentPage(BasePage):
             index = 4
         # 第一个文件的删除按钮
         first_file_delete_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[{}]'
-                                        .format(str(index)))
+                                        .format(index))
         self.tap_element(first_file_delete_button_loc)
 
     # 打开创建笔记页面
