@@ -33,6 +33,8 @@ class RecentPage(BasePage):
             index = 3
         elif file_type == 'markdown':
             index = 2
+        elif file_type == 'pic':
+            index = 2
         # 第一个文件标题
         first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[{}]'
                                 .format(index))
@@ -92,6 +94,11 @@ class RecentPage(BasePage):
     def open_create_link_collect_note(self):
         self.tap_element(TabBar.create_button_loc)
         self.tap_element(CreateButtonsLayer.link_collect_button_loc)
+
+    # 打开上传图片页面
+    def open_upload_pic(self):
+        self.tap_element(TabBar.create_button_loc)
+        self.tap_element(CreateButtonsLayer.upload_pic_button_loc)
 
     # 输入收藏的链接
     def input_link(self, url):
