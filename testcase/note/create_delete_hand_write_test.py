@@ -8,6 +8,7 @@ __author__ = 'kejie'
 import unittest
 from testcase import BaseCase
 from lib import get_time
+import json
 
 
 class TestCreateDeleteHandWrite(BaseCase):
@@ -22,7 +23,7 @@ class TestCreateDeleteHandWrite(BaseCase):
 
     def test_create_delete_hand_write(self):
         self.recent_page.open_create_handwrite()
-        rect = self.hand_write_page.get_hand_write_zone_rect()
+        rect = json.loads(self.hand_write_page.get_hand_write_zone_rect())
         from_x = float(rect['x'])
         from_y = float(rect['y'])
         to_x = float(rect['x']) + float(rect['width'])
