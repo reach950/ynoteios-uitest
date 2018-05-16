@@ -35,6 +35,8 @@ class RecentPage(BasePage):
             index = 2
         elif file_type == 'pic':
             index = 2
+        elif file_type == 'hand_write':
+            index = 2
         # 第一个文件标题
         first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[{}]'
                                 .format(index))
