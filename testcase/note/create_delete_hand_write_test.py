@@ -23,8 +23,11 @@ class TestCreateDeleteHandWrite(BaseCase):
     def test_create_delete_hand_write(self):
         self.recent_page.open_create_handwrite()
         rect = self.hand_write_page.get_hand_write_zone_rect()
-        self.hand_write_page.drag_from_to_for_duration(rect['x'], rect['y'], rect['x']+rect['width'],
-                                                       rect['y']+rect['height'])
+        from_x = float(rect['x'])
+        from_y = float(rect['y'])
+        to_x = float(rect['x']) + float(rect['width'])
+        to_y = float(rect['y']) + float(rect['height'])
+        self.hand_write_page.drag_from_to_for_duration(from_x, from_y, to_x, to_y)
         self.assertEqual(self.hand_write_page.get_hand_write_images_count(), 1, '手写笔记生成图片失败')
         self.hand_write_page.input_note_title(self.title)
         self.hand_write_page.tap_complete_button()
