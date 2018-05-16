@@ -57,6 +57,27 @@ class BasePage:
         else:
             self.driver.execute_script('mobile: swipe', {'direction': direct})
 
+    # 重新封装拖放操作
+    def drag_from_to_for_duration(self, from_x, from_y, to_x, to_y, duration=1.0, loc=None):
+        """
+        通过坐标执行拖放手势
+        :param from_x: 起始拖动点的x坐标（类型为float）
+        :param from_y: 起始拖动点的y坐标（类型为float）
+        :param to_x: 结束拖动点的x坐标（类型为float）
+        :param to_y: 结束拖动点的y坐标（类型为float）
+        :param duration: 持续时间：范围[0.5，60]内的秒数
+        :param loc: 元素定位，空值时所有坐标为绝对屏幕坐标，有值时所有坐标将相对计算在屏幕上的这个元素位置
+        :return:
+        """
+        if loc:
+            self.driver.execute_script(
+                'mobile: dragFromToForDuration', {'duration': duration, 'fromX': from_x, 'fromY': from_y, 'toX': to_x,
+                                                  'toY': to_y, 'element': self.find_element(loc)})
+        else:
+            self.driver.execute_script(
+                'mobile: dragFromToForDuration', {'duration': duration, 'fromX': from_x, 'fromY': from_y, 'toX': to_x,
+                                                  'toY': to_y})
+
     def get_alert_buttons(self):
         """
         获取当前警告框的按钮名称

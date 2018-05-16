@@ -13,7 +13,7 @@ from lib import get_time
 class TestUploadDeletePic(BaseCase):
 
     def setUp(self):
-        self.time = int(get_time()) * 10
+        self.time = int(get_time())
         super().setUp()
 
     def tearDown(self):
@@ -26,7 +26,8 @@ class TestUploadDeletePic(BaseCase):
         self.album_page.tap_first_photo()
         self.album_page.tap_complete_button()
         title = self.recent_page.get_first_file_title('pic')
-        create_time = title.split('.')[0]
+        # 获取图片标题，去除最后一位的数字编号，得到创建时间
+        create_time = int(title.split('.')[0][:-1])
         # 检查新创建的图片是否是最新列表中第一个文件
         self.assertTrue(create_time > self.time, '上传图片失败')
         self.recent_page.delete_first_file(is_sync=True)

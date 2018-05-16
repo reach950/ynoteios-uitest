@@ -5,7 +5,8 @@
 __author__ = 'kejie'
 
 from .recent_page import RecentPage
-from .note_page import NotePage
+from .note.note_page import NotePage
+from .note.hand_write_page import HandWritePage
 from .folder_page import FolderPage
 from .scan.add_photos_page import AddPhotosPage
 from .scan.preview_photos_page import PreviewPhotosPage

@@ -100,6 +100,11 @@ class RecentPage(BasePage):
         self.tap_element(TabBar.create_button_loc)
         self.tap_element(CreateButtonsLayer.upload_pic_button_loc)
 
+    # 打开创建手写笔记页面
+    def open_create_handwrite(self):
+        self.tap_element(TabBar.create_button_loc)
+        self.tap_element(CreateButtonsLayer.create_handwrite_button_loc)
+
     # 输入收藏的链接
     def input_link(self, url):
         self.send_keys(self.link_collect_textview_loc, url)

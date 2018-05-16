@@ -19,6 +19,7 @@ class BaseCase(unittest.TestCase):
         self.recent_page = po.RecentPage(self.driver)
         self.folder_page = po.FolderPage(self.driver)
         self.note_page = po.NotePage(self.driver)
+        self.hand_write_page = po.HandWritePage(self.driver)
         self.add_photos_page = po.AddPhotosPage(self.driver)
         self.preview_photos_page = po.PreviewPhotosPage(self.driver)
         self.scan_page = po.ScanPage(self.driver)
