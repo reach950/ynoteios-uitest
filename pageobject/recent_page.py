@@ -71,6 +71,10 @@ class RecentPage(BasePage):
     def switch_to_folder_page(self):
         self.tap_element(TabBar.folder_button_loc)
 
+    # 切换到我的
+    def switch_to_mine_page(self):
+        self.tap_element(TabBar.mine_button_loc)
+
     # 打开创建scan页面
     def open_create_scan(self, is_from_tabbar=False):
         if is_from_tabbar:

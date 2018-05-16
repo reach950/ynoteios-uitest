@@ -15,3 +15,5 @@ from .album_page import AlbumPage
 from .audio.audio_page import AudioPage
 from .audio.record_page import RecordPage
 from .markdown_page import MarkdownPage
+from .login_page import LoginPage
+from .mine_page import MinePage

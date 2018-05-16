@@ -27,6 +27,8 @@ class BaseCase(unittest.TestCase):
         self.record_page = po.RecordPage(self.driver)
         self.audio_page = po.AudioPage(self.driver)
         self.markdown_page = po.MarkdownPage(self.driver)
+        self.login_page = po.LoginPage(self.driver)
+        self.mine_page = po.MinePage(self.driver)
 
     def tearDown(self):
         self.driver.quit()
