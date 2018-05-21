@@ -18,9 +18,17 @@ def get_device(device_name):
     return devices[device_name]
 
 
+def get_account(account_name):
+    os.chdir(os.path.abspath(os.path.dirname(__file__)))
+    yamlpath = os.path.join(os.path.pardir, 'config', 'account.yaml')
+    with open(yamlpath, 'r', encoding='utf-8') as f:
+        devices = yaml.load(f)
+    return devices[account_name]
+
+
 def get_time():
     return datetime.now().strftime("%Y%m%d%H%M%S")
 
 
 if __name__ == '__main__':
-    print(get_device('iPhone6'))
+    print(get_account('163'))
