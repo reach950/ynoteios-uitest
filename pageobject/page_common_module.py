@@ -44,19 +44,24 @@ class TabBar:
     """
 
     # tabbar的创建按钮
-    create_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTabBar/**/XCUIElementTypeButton[3]')
+    create_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTabBar/XCUIElementTypeOther'
+                                                   '/**/XCUIElementTypeButton[3]')
 
     # 最新
-    recent_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTabBar/**/XCUIElementTypeButton[1]')
+    recent_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTabBar/XCUIElementTypeOther'
+                                                   '/**/XCUIElementTypeButton[1]')
 
     # 文件夹
-    folder_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTabBar/**/XCUIElementTypeButton[2]')
+    folder_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTabBar/XCUIElementTypeOther'
+                                                   '/**/XCUIElementTypeButton[2]')
 
     # 收藏
-    collect_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTabBar/**/XCUIElementTypeButton[4]')
+    collect_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTabBar/XCUIElementTypeOther'
+                                                    '/**/XCUIElementTypeButton[4]')
 
     # 我的
-    mine_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTabBar/**/XCUIElementTypeButton[5]')
+    mine_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeTabBar/XCUIElementTypeOther'
+                                                 '/**/XCUIElementTypeButton[5]')
 
 
 class MultiOperationList:
