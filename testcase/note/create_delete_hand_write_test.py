@@ -22,7 +22,7 @@ class TestCreateDeleteHandWrite(BaseCase):
         super().tearDown()
 
     def test_create_delete_hand_write(self):
-        self.recent_page.open_create_handwrite()
+        self.recent_page.open_create_file_from_tabbar('hand_write')
         rect = json.loads(self.hand_write_page.get_hand_write_zone_rect())
         from_x = float(rect['x'])
         from_y = float(rect['y'])

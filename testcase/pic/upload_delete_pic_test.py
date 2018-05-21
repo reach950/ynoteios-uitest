@@ -20,7 +20,7 @@ class TestUploadDeletePic(BaseCase):
         super().tearDown()
 
     def test_upload_delete_pic(self):
-        self.recent_page.open_upload_pic()
+        self.recent_page.open_create_file_from_tabbar('pic')
         # 获取相册权限
         self.recent_page.accept_alert()
         self.album_page.tap_first_photo()

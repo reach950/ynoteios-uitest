@@ -21,7 +21,7 @@ class TestCreateDeleteNote(BaseCase):
         super().tearDown()
 
     def test_create_delete_note(self):
-        self.recent_page.open_create_note()
+        self.recent_page.open_create_file_from_tabbar('note')
         self.note_page.input_note_title(self.title)
         self.note_page.tap_complete_button()
         self.note_page.tap_return_button()

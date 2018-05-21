@@ -53,11 +53,6 @@ class RecentPage(BasePage):
                                         .format(index))
         self.tap_element(first_file_delete_button_loc)
 
-    # 打开创建笔记页面
-    def open_create_note(self):
-        self.tap_element(TabBar.create_button_loc)
-        self.tap_element(CreateButtonsLayer.create_note_buuton_loc)
-
     # 删除第一个文件
     def delete_first_file(self, is_sync=False):
         self.swipe('left', self.first_file_loc)
@@ -67,49 +62,48 @@ class RecentPage(BasePage):
             self.click_first_file_delete_button()
         self.click_alert_button('删除')
 
-    # 切换到文件夹
-    def switch_to_folder_page(self):
-        self.tap_element(TabBar.folder_button_loc)
-
-    # 切换到我的
-    def switch_to_mine_page(self):
-        self.tap_element(TabBar.mine_button_loc)
+    # 打开创建指定文件的页面
+    def open_create_file_from_tabbar(self, file_type):
+        self.tap_element(TabBar.create_button_loc)
+        if file_type == 'note':
+            self.tap_element(CreateButtonsLayer.create_note_buuton_loc)
+        elif file_type == 'scan':
+            self.tap_element(CreateButtonsLayer.create_scan_buuton_loc)
+        elif file_type == 'audio':
+            self.tap_element(CreateButtonsLayer.create_audio_buuton_loc)
+        elif file_type == 'markdown':
+            self.tap_element(CreateButtonsLayer.create_markdown_button_loc)
+        elif file_type == 'link_collect':
+            self.tap_element(CreateButtonsLayer.link_collect_button_loc)
+        elif file_type == 'pic':
+            self.tap_element(CreateButtonsLayer.upload_pic_button_loc)
+        elif file_type == 'hand_write':
+            self.tap_element(CreateButtonsLayer.create_handwrite_button_loc)
 
     # 打开创建scan页面
     def open_create_scan(self, is_from_tabbar=False):
         if is_from_tabbar:
-            self.tap_element(TabBar.create_button_loc)
-            self.tap_element(CreateButtonsLayer.create_scan_buuton_loc)
+            self.open_create_file_from_tabbar('scan')
         else:
             self.tap_element(self.create_scan_button_loc)
 
     # 打开创建audio页面
     def open_create_audio(self, is_from_tabbar=False):
         if is_from_tabbar:
-            self.tap_element(TabBar.create_button_loc)
-            self.tap_element(CreateButtonsLayer.create_audio_buuton_loc)
+            self.open_create_file_from_tabbar('audio')
         else:
             self.tap_element(self.create_audio_button_loc)
 
-    # 打开创建markdown页面
-    def open_create_markdown(self):
-        self.tap_element(TabBar.create_button_loc)
-        self.tap_element(CreateButtonsLayer.create_markdown_button_loc)
-
-    # 打开创建链接收藏笔记
-    def open_create_link_collect_note(self):
-        self.tap_element(TabBar.create_button_loc)
-        self.tap_element(CreateButtonsLayer.link_collect_button_loc)
-
-    # 打开上传图片页面
-    def open_upload_pic(self):
-        self.tap_element(TabBar.create_button_loc)
-        self.tap_element(CreateButtonsLayer.upload_pic_button_loc)
-
-    # 打开创建手写笔记页面
-    def open_create_handwrite(self):
-        self.tap_element(TabBar.create_button_loc)
-        self.tap_element(CreateButtonsLayer.create_handwrite_button_loc)
+    # 切换到指定tab
+    def switch_to_dest_page(self, dest):
+        if dest == 'recent':
+            self.tap_element(TabBar.recent_button_loc)
+        elif dest == 'folder':
+            self.tap_element(TabBar.folder_button_loc)
+        elif dest == 'collect':
+            self.tap_element(TabBar.collect_button_loc)
+        elif dest == 'mine':
+            self.tap_element(TabBar.mine_button_loc)
 
     # 输入收藏的链接
     def input_link(self, url):

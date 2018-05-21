@@ -21,8 +21,8 @@ class TestCreateDeleteMarkdown(BaseCase):
         super().tearDown()
 
     def test_create_delete_markdown(self):
-        self.recent_page.open_create_markdown()
-        # md显示为编译状态
+        self.recent_page.open_create_file_from_tabbar('markdown')
+        # md显示为编辑状态
         self.assertTrue(self.markdown_page.is_md_edit())
         self.markdown_page.input_md_title(self.title)
         self.markdown_page.tap_preview_button()

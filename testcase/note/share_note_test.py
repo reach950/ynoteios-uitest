@@ -19,7 +19,7 @@ class TestShareNote(BaseCase):
 
     def test_copy_share_link(self):
         # 测试复制分享链接
-        self.recent_page.switch_to_folder_page()
+        self.recent_page.switch_to_dest_page('folder')
         self.folder_page.open_folder_by_title('note')
         self.folder_page.open_first_file()
         self.note_page.tap_share_button()
