@@ -1,16 +1,23 @@
 defaults: &defaults
-  automationName: XCUITest
-  platformName: iOS
-  bundleId: com.youdao.note.iphone
+  automationName: 'XCUITest'
+  platformName: 'iOS'
   newCommandTimeout: 3600
-  xcodeOrgId: VHJLLQ36QB
-  xcodeSigningId: iPhone Developer
 
+real device: &realdevice
+  bundleId: 'com.youdao.note.iphone'
+  xcodeOrgId: 'VHJLLQ36QB'
+  xcodeSigningId: 'iPhone Developer'
 
 iPhone6:
   deviceName: 'iPhone 6'
   platformVersion: !!str 11.3
-  udid: 60e71ab5d3c953924899a75f5cc79141834a7661
+  udid: '60e71ab5d3c953924899a75f5cc79141834a7661'
   startIWDP: true
   <<: *defaults
+  <<: *realdevice
 
+iPhoneX Simulator:
+  deviceName: 'iPhone X'
+  platformVersion: !!str 11.3
+  app: '/path/to/my.app'
+  <<: *defaults
