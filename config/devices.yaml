@@ -19,5 +19,5 @@ iPhone6:
 iPhoneX Simulator:
   deviceName: 'iPhone X'
   platformVersion: !!str 11.3
-  app: '/path/to/my.app'
+  app: '/Users/kejie/ios_ui_test/有道笔记-simulator.app'
   <<: *defaults
