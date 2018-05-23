@@ -9,6 +9,7 @@ from appium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import WebDriverException
 import logging
+import time
 
 
 class BasePage:
@@ -112,20 +113,30 @@ class BasePage:
         """
         return self.driver.execute_script('mobile: getPasteboard', {'encoding': 'UTF-8'})
 
-    def accept_alert(self):
+    def accept_alert(self, timeout=15.0):
         """
         如果弹出警告框，就接受
         :return:
         """
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            if self.is_alert_exist():
+                buttons = self.get_alert_buttons()
+                btns = {u'好', u'允许', 'Allow', 'OK'}.intersection(buttons)
+                if len(btns) == 0:
+                    raise RuntimeError(u'警告框无法接受, buttons: {}'.format(', '.join(buttons)))
+                self.click_alert_button(list(btns)[0])
+                return
+            else:
+                time.sleep(0.5)
+
+    def is_alert_exist(self):
         try:
-            buttons = self.get_alert_buttons()
+            self.get_alert_buttons()
         except WebDriverException:
-            return
+            return False
         else:
-            btns = {u'好', u'允许'}.intersection(buttons)
-            if len(btns) == 0:
-                raise RuntimeError(u'警告框无法接受, buttons: {}'.format(', '.join(buttons)))
-            self.click_alert_button(list(btns)[0])
+            return True
 
 
 if __name__ == '__main__':

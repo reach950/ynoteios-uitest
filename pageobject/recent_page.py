@@ -18,6 +18,9 @@ class RecentPage(BasePage):
     # 创建audio按钮
     create_audio_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[3]')
 
+    # 最新页面导航栏
+    navigation_bar_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeNavigationBar" AND name == "最新"')
+
     # 第一个文件
     first_file_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeCell')
 
@@ -108,3 +111,10 @@ class RecentPage(BasePage):
     # 输入收藏的链接
     def input_link(self, url):
         self.send_keys(self.link_collect_textview_loc, url)
+
+    # 检查最新页面是否显示
+    def is_recent_page_dispaly(self):
+        if self.find_element(self.navigation_bar_loc).is_displayed():
+            return True
+        else:
+            return False

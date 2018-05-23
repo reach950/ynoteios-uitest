@@ -17,3 +17,4 @@ from .audio.record_page import RecordPage
 from .markdown_page import MarkdownPage
 from .login_page import LoginPage
 from .mine_page import MinePage
+from .introduction_page import IntroPage
