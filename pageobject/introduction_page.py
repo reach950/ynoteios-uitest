@@ -29,14 +29,14 @@ class IntroPage(BasePage):
 
     # 检查引导页是否存在
     def is_intro_page_dispaly(self):
-        if self.find_element(self.first_intro_img_loc):
+        if self.find_element(self.first_intro_img_loc, is_image=True):
             return True
         else:
             return False
 
     # 处理引导页
     def handle_intro_page(self):
-        while self.find_element(self.use_new_edition_button_loc).is_displayed():
+        while self.find_element(self.use_new_edition_button_loc):
             self.swipe('left')
             sleep(0.5)
         self.tap_element(self.use_new_edition_button_loc)

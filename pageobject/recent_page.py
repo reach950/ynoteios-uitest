@@ -69,19 +69,19 @@ class RecentPage(BasePage):
     def open_create_file_from_tabbar(self, file_type):
         self.tap_element(TabBar.create_button_loc)
         if file_type == 'note':
-            self.tap_element(CreateButtonsLayer.create_note_buuton_loc)
+            self.tap_element(CreateButtonsLayer.create_note_buuton_loc, is_image=True)
         elif file_type == 'scan':
-            self.tap_element(CreateButtonsLayer.create_scan_buuton_loc)
+            self.tap_element(CreateButtonsLayer.create_scan_buuton_loc, is_image=True)
         elif file_type == 'audio':
-            self.tap_element(CreateButtonsLayer.create_audio_buuton_loc)
+            self.tap_element(CreateButtonsLayer.create_audio_buuton_loc, is_image=True)
         elif file_type == 'markdown':
-            self.tap_element(CreateButtonsLayer.create_markdown_button_loc)
+            self.tap_element(CreateButtonsLayer.create_markdown_button_loc, is_image=True)
         elif file_type == 'link_collect':
-            self.tap_element(CreateButtonsLayer.link_collect_button_loc)
+            self.tap_element(CreateButtonsLayer.link_collect_button_loc, is_image=True)
         elif file_type == 'pic':
-            self.tap_element(CreateButtonsLayer.upload_pic_button_loc)
+            self.tap_element(CreateButtonsLayer.upload_pic_button_loc, is_image=True)
         elif file_type == 'hand_write':
-            self.tap_element(CreateButtonsLayer.create_handwrite_button_loc)
+            self.tap_element(CreateButtonsLayer.create_handwrite_button_loc, is_image=True)
 
     # 打开创建scan页面
     def open_create_scan(self, is_from_tabbar=False):
