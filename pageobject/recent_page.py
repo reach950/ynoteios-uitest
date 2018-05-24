@@ -69,19 +69,19 @@ class RecentPage(BasePage):
     def open_create_file_from_tabbar(self, file_type):
         self.tap_element(TabBar.create_button_loc)
         if file_type == 'note':
-            self.tap_element(CreateButtonsLayer.create_note_buuton_loc, is_image=True)
+            self.tap_element(CreateButtonsLayer.create_note_buuton_loc, check_display=False)
         elif file_type == 'scan':
-            self.tap_element(CreateButtonsLayer.create_scan_buuton_loc, is_image=True)
+            self.tap_element(CreateButtonsLayer.create_scan_buuton_loc, check_display=False)
         elif file_type == 'audio':
-            self.tap_element(CreateButtonsLayer.create_audio_buuton_loc, is_image=True)
+            self.tap_element(CreateButtonsLayer.create_audio_buuton_loc, check_display=False)
         elif file_type == 'markdown':
-            self.tap_element(CreateButtonsLayer.create_markdown_button_loc, is_image=True)
+            self.tap_element(CreateButtonsLayer.create_markdown_button_loc, check_display=False)
         elif file_type == 'link_collect':
-            self.tap_element(CreateButtonsLayer.link_collect_button_loc, is_image=True)
+            self.tap_element(CreateButtonsLayer.link_collect_button_loc, check_display=False)
         elif file_type == 'pic':
-            self.tap_element(CreateButtonsLayer.upload_pic_button_loc, is_image=True)
+            self.tap_element(CreateButtonsLayer.upload_pic_button_loc, check_display=False)
         elif file_type == 'hand_write':
-            self.tap_element(CreateButtonsLayer.create_handwrite_button_loc, is_image=True)
+            self.tap_element(CreateButtonsLayer.create_handwrite_button_loc, check_display=False)
 
     # 打开创建scan页面
     def open_create_scan(self, is_from_tabbar=False):
@@ -114,7 +114,7 @@ class RecentPage(BasePage):
 
     # 检查最新页面是否显示
     def is_recent_page_dispaly(self):
-        if self.find_element(self.navigation_bar_loc).is_displayed():
+        if self.find_element(self.navigation_bar_loc, check_display=False).is_displayed():
             return True
         else:
             return False

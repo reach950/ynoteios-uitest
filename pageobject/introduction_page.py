@@ -29,7 +29,7 @@ class IntroPage(BasePage):
 
     # 检查引导页是否存在
     def is_intro_page_dispaly(self):
-        if self.find_element(self.first_intro_img_loc, is_image=True):
+        if self.find_element(self.first_intro_img_loc, check_display=False):
             return True
         else:
             return False

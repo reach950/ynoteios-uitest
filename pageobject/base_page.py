@@ -18,12 +18,19 @@ class BasePage:
         self.driver = appium_driver  # type:webdriver.Remote
 
     # 重新封装单个元素定位方法
-    def find_element(self, loc, is_image=False, wait=15) -> webdriver.WebElement:
+    def find_element(self, loc, check_display=True, wait=15) -> webdriver.WebElement:
+        """
+
+        :param loc:
+        :param check_display: image元素的isVisible属性一直是No，需要改为False
+        :param wait:
+        :return:
+        """
         try:
-            if is_image:
-                WebDriverWait(self.driver, wait).until(lambda driver: driver.find_element(*loc))
-            else:
+            if check_display:
                 WebDriverWait(self.driver, wait).until(lambda driver: driver.find_element(*loc).is_displayed())
+            else:
+                WebDriverWait(self.driver, wait).until(lambda driver: driver.find_element(*loc))
             return self.driver.find_element(*loc)
         except WebDriverException:
             logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
@@ -40,8 +47,8 @@ class BasePage:
             logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
 
     # 重新封装元素点击操作
-    def tap_element(self, loc, x=0.0, y=0.0, is_image=False):
-        self.driver.execute_script('mobile: tap', {'x': x, 'y': y, 'element': self.find_element(loc, is_image)})
+    def tap_element(self, loc, x=0.0, y=0.0, check_display=True):
+        self.driver.execute_script('mobile: tap', {'x': x, 'y': y, 'element': self.find_element(loc, check_display)})
 
     # 重新封装输入操作
     def send_keys(self, loc, value):
