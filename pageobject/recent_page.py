@@ -27,6 +27,9 @@ class RecentPage(BasePage):
     # 链接收藏输入框
     link_collect_textview_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeTextView" AND enabled == 1')
 
+    # 同步成功的提示
+    sync_success_tips_loc = (MobileBy.ACCESSIBILITY_ID, '同步成功')
+
     # 获取第一个文件的标题
     def get_first_file_title(self, file_type):
         index = 0
@@ -112,9 +115,16 @@ class RecentPage(BasePage):
     def input_link(self, url):
         self.send_keys(self.link_collect_textview_loc, url)
 
-    # 检查最新页面是否显示
+    # 最新页面是否显示
     def is_recent_page_dispaly(self):
         if self.find_element(self.navigation_bar_loc, check_display=False).is_displayed():
+            return True
+        else:
+            return False
+
+    # 是否同步成功
+    def is_sync_success(self):
+        if self.find_element(self.sync_success_tips_loc, wait=20.0):
             return True
         else:
             return False
