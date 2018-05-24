@@ -10,7 +10,7 @@ from testcase import BaseCase
 from lib import get_time
 
 
-class TestCreateDeleteNote(BaseCase):
+class TestCreateNote(BaseCase):
 
     def setUp(self):
         # 生成笔记标题
@@ -20,16 +20,12 @@ class TestCreateDeleteNote(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    def test_create_delete_note(self):
+    def test_create_note(self):
         self.recent_page.open_create_file_from_tabbar('note')
         self.note_page.input_note_title(self.title)
-        self.note_page.tap_complete_button()
         self.note_page.tap_return_button()
         # 检查新创建的笔记是否是最新列表中第一个文件
-        self.assertEqual(self.recent_page.get_first_file_title('note'), self.title, '笔记创建失败')
-        self.recent_page.delete_first_file(is_sync=True)
-        # 检查笔记是否删除
-        self.assertNotEqual(self.recent_page.get_first_file_title('note'), self.title, '笔记删除失败')
+        self.assertTrue(self.recent_page.is_first_file_title_exist(self.title), '笔记创建失败')
 
 
 if __name__ == '__main__':

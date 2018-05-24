@@ -25,48 +25,26 @@ class RecentPage(BasePage):
     # 第一个文件
     first_file_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeCell')
 
+    # 第一个文件的删除按钮
+    first_file_delete_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[-1]')
+
     # 链接收藏输入框
     link_collect_textview_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeTextView" AND enabled == 1')
 
-    # 同步成功的提示
-    sync_success_tips_loc = (MobileBy.ACCESSIBILITY_ID, '同步成功')
-
-    # 获取第一个文件的标题
-    def get_first_file_title(self, file_type):
-        index = 0
-        if file_type == 'note':
-            index = 2
-        elif file_type == 'audio':
-            index = 3
-        elif file_type == 'markdown':
-            index = 2
-        elif file_type == 'pic':
-            index = 2
-        elif file_type == 'hand_write':
-            index = 1
+    # 第一个文件的标题的是否存在
+    def is_first_file_title_exist(self, text):
         # 第一个文件标题
-        first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[{}]'
-                                .format(index))
-        return self.find_element(first_file_title_loc).get_attribute('value')
-
-    # 点击第一个文件的删除按钮
-    def click_first_file_delete_button(self, is_sync=False):
-        if is_sync:
-            index = 3
+        first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/'
+                                                          'XCUIElementTypeStaticText[$name = \"{}\"$]'.format(text))
+        if self.find_element(first_file_title_loc):
+            return True
         else:
-            index = 4
-        # 第一个文件的删除按钮
-        first_file_delete_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[{}]'
-                                        .format(index))
-        self.tap_element(first_file_delete_button_loc)
+            return False
 
     # 删除第一个文件
-    def delete_first_file(self, is_sync=False):
+    def delete_first_file(self):
         self.swipe('left', self.first_file_loc)
-        if is_sync:
-            self.click_first_file_delete_button(is_sync)
-        else:
-            self.click_first_file_delete_button()
+        self.tap_element(self.first_file_delete_button_loc)
         self.click_alert_button('删除')
 
     # 打开创建指定文件的页面
