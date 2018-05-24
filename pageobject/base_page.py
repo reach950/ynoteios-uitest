@@ -36,7 +36,7 @@ class BasePage:
             logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
 
     # 重新封装一组元素定位方法
-    def find_elements(self, loc):
+    def find_elements(self, loc, wait=15):
         try:
             WebDriverWait(self.driver, wait).until(lambda driver: driver.find_elements(*loc))
             return self.driver.find_elements(*loc)
