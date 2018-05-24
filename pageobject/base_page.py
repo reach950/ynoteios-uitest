@@ -38,11 +38,8 @@ class BasePage:
     # 重新封装一组元素定位方法
     def find_elements(self, loc):
         try:
-            eles = self.driver.find_elements(*loc)
-            if eles:
-                return eles
-            else:
-                logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
+            WebDriverWait(self.driver, wait).until(lambda driver: driver.find_elements(*loc))
+            return self.driver.find_elements(*loc)
         except WebDriverException:
             logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
 
