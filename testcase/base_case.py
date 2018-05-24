@@ -50,5 +50,4 @@ class BaseCase(unittest.TestCase):
                 self.user_id = utils.get_account('163')['userId']
                 self.password = utils.get_account('163')['password']
                 self.login_page.login_by_netease_email(self.user_id, self.password)
-                if self.recent_page.is_sync_success():
-                    return
+                self.recent_page.wait_sync_success()

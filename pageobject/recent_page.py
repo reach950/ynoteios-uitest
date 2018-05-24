@@ -8,6 +8,7 @@ __author__ = 'kejie'
 from pageobject.base_page import BasePage
 from appium.webdriver.common.mobileby import MobileBy
 from pageobject.page_common_module import TabBar, CreateButtonsLayer
+import time
 
 
 class RecentPage(BasePage):
@@ -122,9 +123,11 @@ class RecentPage(BasePage):
         else:
             return False
 
-    # 是否同步成功
-    def is_sync_success(self):
-        if self.find_element(self.sync_success_tips_loc, wait=20.0):
-            return True
-        else:
-            return False
+    # 第一次登录时，等待页面同步成功
+    def wait_sync_success(self, timeout=30.0):
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            first_sync_files = self.find_elements(self.first_file_loc)
+            time.sleep(1)
+            if len(first_sync_files) > 1 and len(first_sync_files) == len(self.find_elements(self.first_file_loc)):
+                return
