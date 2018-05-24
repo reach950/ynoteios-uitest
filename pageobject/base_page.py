@@ -48,11 +48,12 @@ class BasePage:
 
     # 重新封装元素点击操作
     def tap_element(self, loc, x=0.0, y=0.0, check_display=True):
-        self.driver.execute_script('mobile: tap', {'x': x, 'y': y, 'element': self.find_element(loc, check_display)})
+        ele = self.find_element(loc, check_display)
+        self.driver.execute_script('mobile: tap', {'x': x, 'y': y, 'element': ele})
 
     # 重新封装输入操作
-    def send_keys(self, loc, value):
-        ele = self.find_element(loc)
+    def send_keys(self, loc, value, check_display=True):
+        ele = self.find_element(loc, check_display)
         try:
             ele.set_value(value)
         except WebDriverException:

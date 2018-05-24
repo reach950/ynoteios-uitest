@@ -8,6 +8,7 @@ __author__ = 'kejie'
 from pageobject.base_page import BasePage
 from appium.webdriver.common.mobileby import MobileBy
 from time import sleep
+import json
 
 
 class IntroPage(BasePage):
@@ -36,7 +37,11 @@ class IntroPage(BasePage):
 
     # 处理引导页
     def handle_intro_page(self):
-        while not self.find_element(self.use_new_edition_button_loc).is_displayed():
+        ele = self.find_element(self.use_new_edition_button_loc, check_display=False)
+        while not ele.is_displayed():
             self.swipe('left')
             sleep(0.5)
-        self.tap_element(self.use_new_edition_button_loc)
+        rect = json.loads(ele.get_attribute('rect'))
+        x = rect['width'] / 2
+        y = rect['height'] / 2
+        self.tap_element(self.use_new_edition_button_loc, x=x, y=y)

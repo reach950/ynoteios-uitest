@@ -23,5 +23,5 @@ class LoginPage(BasePage):
     # 网易通行证登录
     def login_by_netease_email(self, user_id, password):
         self.send_keys(self.account_input_loc, user_id)
-        self.send_keys(self.password_input_loc, password)
+        self.send_keys(self.password_input_loc, password, check_display=False)
         self.tap_element(self.login_button_loc)
