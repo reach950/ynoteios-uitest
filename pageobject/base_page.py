@@ -10,6 +10,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import WebDriverException
 import logging
 import time
+import json
 
 
 class BasePage:
@@ -44,8 +45,11 @@ class BasePage:
             logging.error(u'{} 页面中未能找到 {} 元素！'.format(self, loc))
 
     # 重新封装元素点击操作
-    def tap_element(self, loc, x=0.0, y=0.0, check_display=True):
+    def tap_element(self, loc, check_display=True):
         ele = self.find_element(loc, check_display)
+        rect = json.loads(ele.get_attribute('rect'))
+        x = rect['width'] / 2
+        y = rect['height'] / 2
         self.driver.execute_script('mobile: tap', {'x': x, 'y': y, 'element': ele})
 
     # 重新封装输入操作

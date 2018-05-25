@@ -41,7 +41,4 @@ class RecordPage(BasePage):
 
     # 获取录音时间
     def get_record_time(self):
-        temp = self.find_elements((MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeStaticText'))
-        for i in temp:
-            print(i.get_attribute('value'))
         return int(self.find_element(self.record_time_second_loc).get_attribute('value'))
