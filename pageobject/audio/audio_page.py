@@ -22,7 +22,7 @@ class AudioPage(BasePage):
 
     # 检查audio_page是否显示
     def is_audio_page_display(self):
-        return self.find_element(self.play_audio_button_loc).is_displayed()
+        return self.find_element(self.play_audio_button_loc)
 
     # 点击返回按钮
     def tap_return_button(self):

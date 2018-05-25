@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""测试创建删除语音速记"""
+"""测试创建语音速记"""
 
 __author__ = 'kejie'
 
@@ -10,7 +10,7 @@ from testcase import BaseCase
 from time import sleep
 
 
-class TestCreateDeleteAudio(BaseCase):
+class TestCreateAudio(BaseCase):
 
     def setUp(self):
         super().setUp()
@@ -18,11 +18,11 @@ class TestCreateDeleteAudio(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    def test_create_delete_audio(self):
+    def test_create_audio(self):
         self.recent_page.open_create_audio()
         self.record_page.start_record()
         # 获取麦克风权限
-        self.record_page.accept_alert()
+        self.record_page.accept_alert(timeout=3.0)
         # 录音3s
         sleep(3)
         self.record_page.pause_record()
@@ -33,8 +33,7 @@ class TestCreateDeleteAudio(BaseCase):
         self.assertTrue(self.audio_page.is_audio_page_display())
         audio_title = self.audio_page.get_audio_title()
         self.audio_page.tap_return_button()
-        self.assertEqual(self.recent_page.get_first_file_title('audio'), audio_title, '语音速记创建失败')
-        self.recent_page.delete_first_file(is_sync=True)
+        self.assertTrue(self.recent_page.is_first_file_title_exist(audio_title), '语音速记创建失败')
 
 
 if __name__ == '__main__':
