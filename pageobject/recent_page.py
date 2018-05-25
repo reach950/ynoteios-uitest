@@ -29,7 +29,7 @@ class RecentPage(BasePage):
     first_file_delete_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton[-1]')
 
     # 链接收藏输入框
-    link_collect_textview_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeTextView" AND enabled == 1')
+    link_collect_textview_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeTextView" AND visible == 1')
 
     # 第一个文件的标题的是否存在
     def is_first_file_title_exist(self, text):
