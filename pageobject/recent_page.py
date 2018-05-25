@@ -36,7 +36,8 @@ class RecentPage(BasePage):
         # 第一个文件标题
         first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/'
                                                           'XCUIElementTypeStaticText[$name = \"{}\"$]'.format(text))
-        if self.find_element(first_file_title_loc):
+        # 获取isVisible属性时，如果最新列表刚好同步成功，则返回False，故设置check_display为False
+        if self.find_element(first_file_title_loc, check_display=False):
             return True
         else:
             return False

@@ -41,7 +41,4 @@ class IntroPage(BasePage):
         while not ele.is_displayed():
             self.swipe('left')
             sleep(0.5)
-        rect = json.loads(ele.get_attribute('rect'))
-        x = rect['width'] / 2
-        y = rect['height'] / 2
-        self.tap_element(self.use_new_edition_button_loc, x=x, y=y)
+        self.tap_element(self.use_new_edition_button_loc)
