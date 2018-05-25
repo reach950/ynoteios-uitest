@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""测试创建删除笔记"""
+"""测试创建笔记"""
 
 __author__ = 'kejie'
 

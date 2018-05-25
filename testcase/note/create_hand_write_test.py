@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""测试创建删除手写笔记"""
+"""测试创建手写笔记"""
 
 __author__ = 'kejie'
 
@@ -11,7 +11,7 @@ from lib import get_time
 import json
 
 
-class TestCreateDeleteHandWrite(BaseCase):
+class TestCreateHandWrite(BaseCase):
 
     def setUp(self):
         # 生成手写笔记标题
@@ -21,7 +21,7 @@ class TestCreateDeleteHandWrite(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    def test_create_delete_hand_write(self):
+    def test_create_hand_write(self):
         self.recent_page.open_create_file_from_tabbar('hand_write')
         rect = json.loads(self.hand_write_page.get_hand_write_zone_rect())
         from_x = float(rect['x'])
@@ -30,12 +30,11 @@ class TestCreateDeleteHandWrite(BaseCase):
         to_y = float(rect['y'] + rect['height'])
         self.hand_write_page.drag_from_to_for_duration(from_x, from_y, to_x, to_y)
         self.hand_write_page.input_note_title(self.title)
-        self.assertEqual(self.hand_write_page.get_hand_write_images_count(), 1, '手写笔记生成图片失败')
+        self.assertTrue(self.hand_write_page.is_hand_write_image_exist(), '手写笔记生成图片失败')
         self.hand_write_page.tap_complete_button()
         self.hand_write_page.tap_return_button()
         # 检查新创建的手写笔记是否是最新列表中第一个文件
-        self.assertEqual(self.recent_page.get_first_file_title('hand_write'), self.title, '手写笔记创建失败')
-        self.recent_page.delete_first_file(is_sync=True)
+        self.assertTrue(self.recent_page.is_first_file_title_exist(self.title), '笔记创建失败')
 
 
 if __name__ == '__main__':

@@ -40,8 +40,11 @@ class HandWritePage(BasePage):
 
     # 获取手写区域的坐标信息
     def get_hand_write_zone_rect(self):
-        return self.find_element(self.hand_write_zone_loc).get_attribute('rect')
+        return self.find_element(self.hand_write_zone_loc, check_display=False).get_attribute('rect')
 
-    # 获取手写笔记的图片数量
-    def get_hand_write_images_count(self):
-        return len(self.find_elements(self.hand_write_images_loc))
+    # 手写笔记的图片是否显示
+    def is_hand_write_image_exist(self):
+        if self.find_element(self.hand_write_images_loc):
+            return True
+        else:
+            return False
