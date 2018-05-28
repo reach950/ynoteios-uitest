@@ -68,8 +68,11 @@ class MultiOperationList:
     """
     文件的更多操作列表
     """
+    # 更多列表中的文件标题
+    file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeOther[$name == "new slide edit"$]'
+                                                '/XCUIElementTypeStaticText')
 
-    # 操作列表中的删除按钮
+    # 更多列表中的删除按钮
     delete_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeStaticText" AND name == "删除"')
 
     # 点击删除后的提示中的删除按钮

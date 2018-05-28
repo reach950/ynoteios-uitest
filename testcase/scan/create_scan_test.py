@@ -13,8 +13,6 @@ from testcase import BaseCase
 class TestCreateScan(BaseCase):
 
     def setUp(self):
-        # 生成scan标题
-        self.title = u'create_scan_{}'.format(get_time())
         super().setUp()
 
     def tearDown(self):
@@ -22,7 +20,7 @@ class TestCreateScan(BaseCase):
 
     def test_create_scan(self):
         self.recent_page.open_create_scan()
-        # 获取摄像头权限
+        # 获取摄像头权限，模拟器上没有
         self.add_photos_page.accept_alert()
         self.add_photos_page.tap_album_button()
         # 获取相册权限
@@ -36,9 +34,10 @@ class TestCreateScan(BaseCase):
         self.add_photos_page.tap_complete_button()
         # 返回到文档扫描详情页面
         self.assertTrue(self.scan_page.is_scan_page_display())
+        title = self.scan_page.get_scan_title()
         self.scan_page.tap_return_button()
         # 检查新创建的文档扫描是否是最新列表中第一个文件
-        self.assertTrue(self.recent_page.is_first_file_title_exist(self.title), 'markdown创建失败')
+        self.assertTrue(self.recent_page.is_first_file_title_exist(title), 'scan创建失败')
 
 
 if __name__ == '__main__':

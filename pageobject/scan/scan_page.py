@@ -34,3 +34,11 @@ class ScanPage(BasePage):
     # 点击返回
     def tap_return_button(self):
         self.tap_element(self.return_button_loc)
+
+    # 获取scan文件标题
+    def get_scan_title(self):
+        self.tap_element(self.multi_operation_button_loc)
+        title = self.find_element(MultiOperationList.file_title_loc).get_attribute('value')
+        # 收起更多操作列表
+        self.tap_element(self.multi_operation_button_loc)
+        return title.split('.')[0]
