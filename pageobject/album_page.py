@@ -9,11 +9,10 @@ from pageobject.base_page import BasePage
 from appium.webdriver.common.mobileby import MobileBy
 
 
-
 class AlbumPage(BasePage):
 
     # 第一张照片
-    first_photo_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeCell')
+    first_photo_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeCell" AND visible == 1')
 
     # 完成按钮
     complete_button_loc = (MobileBy.ACCESSIBILITY_ID, '完成')

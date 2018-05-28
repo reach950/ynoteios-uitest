@@ -125,7 +125,7 @@ class BasePage:
         """
         return self.driver.execute_script('mobile: getPasteboard', {'encoding': 'UTF-8'})
 
-    def accept_alert(self, timeout=15.0):
+    def accept_alert(self, timeout=5.0):
         """
         如果弹出警告框，就接受
         :return:

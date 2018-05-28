@@ -22,7 +22,7 @@ class TestCreateAudio(BaseCase):
         self.recent_page.open_create_audio()
         self.record_page.start_record()
         # 获取麦克风权限
-        self.record_page.accept_alert(timeout=3.0)
+        self.record_page.accept_alert()
         # 录音3s
         sleep(3)
         self.record_page.pause_record()

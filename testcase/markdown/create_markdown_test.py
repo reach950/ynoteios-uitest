@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""测试创建删除markdown"""
+"""测试创建markdown"""
 
 __author__ = 'kejie'
 

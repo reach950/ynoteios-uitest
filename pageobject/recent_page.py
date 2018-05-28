@@ -35,12 +35,20 @@ class RecentPage(BasePage):
     def is_first_file_title_exist(self, text):
         # 第一个文件标题
         first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/'
-                                                          'XCUIElementTypeStaticText[$name = \"{}\"$]'.format(text))
+                                                          'XCUIElementTypeStaticText[`name = \"{}\"`]'.format(text))
         # 获取isVisible属性时，如果最新列表刚好同步成功，则返回False，故设置check_display为False
         if self.find_element(first_file_title_loc, check_display=False):
             return True
         else:
             return False
+
+    # 根据文件后缀名获取第一个文件的标题,App自带文件格式（note，scan，md，audio）没有后缀名无法获取
+    def get_first_file_title_by_extension(self, extension):
+        # 第一个文件标题
+        first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/'
+                                                          'XCUIElementTypeStaticText'
+                                                          '[`name ENDSWITH \"{}\"`]'.format(extension))
+        return self.find_element(first_file_title_loc, check_display=False).get_attribute('value')
 
     # 删除第一个文件
     def delete_first_file(self):

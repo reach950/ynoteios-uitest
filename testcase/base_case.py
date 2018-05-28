@@ -44,7 +44,7 @@ class BaseCase(unittest.TestCase):
         if not self.recent_page.is_recent_page_dispaly():
             if self.intro_page.is_intro_page_dispaly():
                 # 接受app弹出的请求通知权限
-                self.intro_page.accept_alert()
+                self.intro_page.accept_alert(timeout=15.0)
                 self.intro_page.handle_intro_page()
                 self.recent_page.switch_to_dest_page('mine')
                 self.user_id = utils.get_account('163')['userId']
