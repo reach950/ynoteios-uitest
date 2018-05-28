@@ -41,8 +41,8 @@ class MarkdownPage(BasePage):
 
     # 检查markdown是否在编辑状态
     def is_md_edit(self):
-        return self.find_element(self.md_preview_loc).is_displayed()
+        return self.find_element(self.md_preview_loc)
 
     # 检查markdown是否在预览状态
     def is_md_preview(self):
-        return self.find_element(self.md_edit_loc).is_displayed()
+        return self.find_element(self.md_edit_loc)
