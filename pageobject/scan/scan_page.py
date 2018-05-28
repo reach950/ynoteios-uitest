@@ -23,7 +23,7 @@ class ScanPage(BasePage):
 
     # 检查scan_page是否显示
     def is_scan_page_display(self):
-        return self.find_element(self.add_photos_button_loc).is_displayed()
+        return self.find_element(self.add_photos_button_loc)
 
     # 删除scan文件
     def delete_scan(self):

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""测试创建删除文档扫描"""
+"""测试创建文档扫描"""
 
 __author__ = 'kejie'
 
@@ -10,7 +10,7 @@ from lib import get_time
 from testcase import BaseCase
 
 
-class TestCreateDeleteScan(BaseCase):
+class TestCreateScan(BaseCase):
 
     def setUp(self):
         # 生成scan标题
@@ -20,7 +20,7 @@ class TestCreateDeleteScan(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    def test_create_delete_scan(self):
+    def test_create_scan(self):
         self.recent_page.open_create_scan()
         # 获取摄像头权限
         self.add_photos_page.accept_alert()
@@ -38,8 +38,7 @@ class TestCreateDeleteScan(BaseCase):
         self.assertTrue(self.scan_page.is_scan_page_display())
         self.scan_page.tap_return_button()
         # 检查新创建的文档扫描是否是最新列表中第一个文件
-        self.assertEqual(self.recent_page.get_first_file_title('markdown'), self.title, 'markdown创建失败')
-        self.recent_page.delete_first_file(is_sync=True)
+        self.assertTrue(self.recent_page.is_first_file_title_exist(self.title), 'markdown创建失败')
 
 
 if __name__ == '__main__':
