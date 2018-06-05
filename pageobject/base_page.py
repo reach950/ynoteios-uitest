@@ -52,10 +52,15 @@ class BasePage:
         y = rect['height'] / 2
         self.driver.execute_script('mobile: tap', {'x': x, 'y': y, 'element': ele})
 
+    # 重新封装窗口点击操作
+    def tap_window(self, x, y):
+        self.driver.execute_script('mobile: tap', {'x': x, 'y': y})
+
     # 重新封装输入操作
     def send_keys(self, loc, value, check_display=True):
         ele = self.find_element(loc, check_display)
         try:
+            ele.clear()
             ele.set_value(value)
         except WebDriverException:
             logging.error(u'{} 页面中 {} 元素输入文本失败！'.format(self, loc))

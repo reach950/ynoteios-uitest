@@ -17,7 +17,8 @@ iPhone6:
   <<: *realdevice
 
 iPhoneX Simulator:
+  bundleId: 'com.youdao.note.iphone'
   deviceName: 'iPhone X'
   platformVersion: !!str 11.3
-  app: '/Users/kejie/ios_ui_test/有道笔记-simulator.app'
+  # app: '/Users/kejie/ios_ui_test/有道笔记-simulator.app'
   <<: *defaults

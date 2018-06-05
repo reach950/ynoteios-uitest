@@ -22,8 +22,7 @@ class TestLogin(BaseCase):
 
     def test_163_login(self):
         self.recent_page.switch_to_dest_page('mine')
-        self.mine_page.swipe('up')
-        self.mine_page.tap_logout_button()
+        self.mine_page.logout()
         self.login_page.login_by_netease_email(self.user_id, self.password)
         self.assertTrue(self.recent_page.is_recent_page_dispaly(), '登录失败')
 
