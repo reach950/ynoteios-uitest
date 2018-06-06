@@ -16,7 +16,8 @@ class FolderPage(BasePage):
 
     # 打开指定标题的文件夹
     def open_folder_by_title(self, text):
-        return self.tap_element((MobileBy.ACCESSIBILITY_ID, text))
+        folder_title_loc = (MobileBy.ACCESSIBILITY_ID, text)
+        self.tap_element(folder_title_loc)
 
     # 打开当前目录下的第一个文件
     def open_first_file(self):
