@@ -25,6 +25,7 @@ class TestUploadPic(BaseCase):
         self.recent_page.accept_alert()
         self.album_page.tap_first_photo()
         self.album_page.tap_complete_button()
+        self.recent_page.wait_first_file_sync_success()
         title = self.recent_page.get_first_file_title_by_extension('jpg')
         # 获取图片标题，去除最后一位的数字编号，得到创建时间
         create_time = int(title.split('.')[0][:-1])

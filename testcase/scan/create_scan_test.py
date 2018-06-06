@@ -36,6 +36,7 @@ class TestCreateScan(BaseCase):
         self.assertTrue(self.scan_page.is_scan_page_display())
         title = self.scan_page.get_scan_title()
         self.scan_page.tap_return_button()
+        self.recent_page.wait_first_file_sync_success()
         # 检查新创建的文档扫描是否是最新列表中第一个文件
         self.assertTrue(self.recent_page.is_first_file_title_exist(title), 'scan创建失败')
 

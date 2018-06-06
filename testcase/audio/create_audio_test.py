@@ -33,6 +33,7 @@ class TestCreateAudio(BaseCase):
         self.assertTrue(self.audio_page.is_audio_page_display())
         audio_title = self.audio_page.get_audio_title()
         self.audio_page.tap_return_button()
+        self.recent_page.wait_first_file_sync_success()
         self.assertTrue(self.recent_page.is_first_file_title_exist(audio_title), '语音速记创建失败')
 
 

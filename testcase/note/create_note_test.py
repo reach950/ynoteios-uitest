@@ -24,6 +24,7 @@ class TestCreateNote(BaseCase):
         self.recent_page.open_create_file_from_tabbar('note')
         self.note_page.input_note_title(self.title)
         self.note_page.tap_return_button()
+        self.recent_page.wait_first_file_sync_success()
         # 检查新创建的笔记是否是最新列表中第一个文件
         self.assertTrue(self.recent_page.is_first_file_title_exist(self.title), '笔记创建失败')
 

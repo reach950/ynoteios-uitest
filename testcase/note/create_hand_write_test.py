@@ -33,6 +33,7 @@ class TestCreateHandWrite(BaseCase):
         self.assertTrue(self.hand_write_page.is_hand_write_image_exist(), '手写笔记生成图片失败')
         self.hand_write_page.tap_complete_button()
         self.hand_write_page.tap_return_button()
+        self.recent_page.wait_first_file_sync_success()
         # 检查新创建的手写笔记是否是最新列表中第一个文件
         self.assertTrue(self.recent_page.is_first_file_title_exist(self.title), '笔记创建失败')
 

@@ -29,6 +29,7 @@ class TestCreateMarkdown(BaseCase):
         # md显示为预览状态
         self.assertTrue(self.markdown_page.is_md_preview())
         self.markdown_page.tap_return_button()
+        self.recent_page.wait_first_file_sync_success()
         # 检查新创建的markdown是否是最新列表中第一个文件
         self.assertTrue(self.recent_page.is_first_file_title_exist(self.title), 'markdown创建失败')
 

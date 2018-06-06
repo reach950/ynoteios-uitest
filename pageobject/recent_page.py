@@ -34,8 +34,9 @@ class RecentPage(BasePage):
     # 第一个文件的标题的是否存在
     def is_first_file_title_exist(self, text):
         # 第一个文件标题
-        first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/'
-                                                          'XCUIElementTypeStaticText[`name = \"{}\"`]'.format(text))
+        first_file_title_loc = (MobileBy.IOS_CLASS_CHAIN,
+                                '**/XCUIElementTypeCell/XCUIElementTypeStaticText[`name BEGINSWITH \"{}\"`]'
+                                .format(text))
         # 获取isVisible属性时，如果最新列表刚好同步成功，则返回False，故设置check_display为False
         if self.find_element(first_file_title_loc, check_display=False):
             return True
@@ -117,4 +118,13 @@ class RecentPage(BasePage):
             first_sync_files = self.find_elements(self.first_file_loc)
             time.sleep(1)
             if len(first_sync_files) > 1 and len(first_sync_files) == len(self.find_elements(self.first_file_loc)):
+                return
+
+    # 等待第一个文件同步成功
+    def wait_first_file_sync_success(self, timeout=15.0):
+        # 第一个文件的同步按钮
+        first_file_sync_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton')
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            if not self.find_element(first_file_sync_button_loc, wait=5):
                 return
