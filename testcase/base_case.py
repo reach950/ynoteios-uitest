@@ -56,7 +56,7 @@ class BaseCase(unittest.TestCase):
     def open_note_from_note_folder(self):
         self.recent_page.switch_to_dest_page('folder')
         # 如果没有note文件夹，则创建一个
-        if self.folder_page.is_folder_exist_by_title('note'):
+        if not self.folder_page.is_folder_exist_by_title('note'):
             self.folder_page.create_folder_by_title('note')
         self.folder_page.open_folder_by_title('note')
         # 如果note文件夹没有笔记，则创建一个
