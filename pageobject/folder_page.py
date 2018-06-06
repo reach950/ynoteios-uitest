@@ -27,7 +27,7 @@ class FolderPage(BasePage):
     sort_by_create_time_loc = {'x': 290.0, 'y': 383.5}
 
     # 新建文件夹输入框
-    create_folder_textfield_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeTextField" AND visible == 1')
+    create_folder_textfield_loc = (MobileBy.CLASS_NAME, 'XCUIElementTypeTextField')
 
     # 没有文档的背景图片
     no_file_image_loc = (MobileBy.ACCESSIBILITY_ID, 'noNotePlaceholder')
@@ -58,7 +58,7 @@ class FolderPage(BasePage):
 
     # 当前目录是否为空
     def is_folder_empty(self):
-        if self.find_element(self.no_file_image_loc, check_display=False):
+        if self.find_element(self.no_file_image_loc, check_display=False, wait=5):
             return True
         else:
             return False
