@@ -40,5 +40,5 @@ class ScanPage(BasePage):
         self.tap_element(self.multi_operation_button_loc)
         title = self.find_element(MultiOperationList.file_title_loc).get_attribute('value')
         # 收起更多操作列表
-        self.tap_element(self.multi_operation_button_loc)
+        self.tap_element(self.multi_operation_button_loc, check_display=False)
         return title.split('.')[0]
