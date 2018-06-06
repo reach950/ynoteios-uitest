@@ -31,6 +31,11 @@ class RecentPage(BasePage):
     # 链接收藏输入框
     link_collect_textview_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeTextView" AND visible == 1')
 
+    # 导航栏更多操作列表下的按钮（iPhoneX）
+    sync_loc = {'x': 290.0, 'y': 121.5}
+    display_summary_loc = {'x': 290.0, 'y': 182.5}
+    dispaly_share_loc = {'x': 290.0, 'y': 217.5}
+
     # 第一个文件的标题的是否存在
     def is_first_file_title_exist(self, text):
         # 第一个文件标题

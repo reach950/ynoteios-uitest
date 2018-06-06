@@ -13,15 +13,13 @@ class TestShareNote(BaseCase):
 
     def setUp(self):
         super().setUp()
+        self.open_note_from_note_folder()
 
     def tearDown(self):
         super().tearDown()
 
     def test_copy_share_link(self):
         # 测试复制分享链接
-        self.recent_page.switch_to_dest_page('folder')
-        self.folder_page.open_folder_by_title('note')
-        self.folder_page.open_first_file()
         self.note_page.tap_share_button()
         self.note_page.copy_share_link()
         self.assertTrue(self.note_page.is_copy_share_link_success())
