@@ -6,5 +6,6 @@
 __author__ = 'kejie'
 
 from .appium_driver import AppiumDriver
+from .HTMLTestRunner import HTMLTestRunner
 from .utils import get_time
 from .utils import get_device
