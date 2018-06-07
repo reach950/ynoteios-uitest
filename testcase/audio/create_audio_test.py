@@ -11,14 +11,15 @@ from time import sleep
 
 
 class TestCreateAudio(BaseCase):
-
+    """测试创建语音速记"""
     def setUp(self):
         super().setUp()
 
     def tearDown(self):
         super().tearDown()
 
-    def test_create_audio(self):
+    def test_create_audio_from_navigator(self):
+        """从导航栏语音图标创建语音笔记"""
         self.recent_page.open_create_audio()
         self.record_page.start_record()
         # 获取麦克风权限

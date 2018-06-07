@@ -133,3 +133,8 @@ class RecentPage(BasePage):
         while time.time() - start_time < timeout:
             if not self.find_element(first_file_sync_button_loc, wait=5):
                 return
+
+    # 获取第一文件的第一个StaticText值
+    def get_first_file_first_static_text(self):
+        loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText')
+        return self.find_element(loc, check_display=False).get_attribute('value')
