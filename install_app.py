@@ -12,8 +12,8 @@ import argparse
 def run_shell(cmd_shell):
     process = subprocess.Popen(cmd_shell, shell=True)
     process.wait()
-    return_code = process.returncode
-    assert return_code == 0
+    # return_code = process.returncode
+    # assert return_code == 0
 
 
 def parse_args():
@@ -29,13 +29,13 @@ def parse_args():
 
 
 def open_device(device):
-    cmd_shell = 'xcrun instruments -w {}'.format(device)
+    cmd_shell = 'xcrun instruments -w \"{}\"'.format(device)
     run_shell(cmd_shell)
 
 
 def install_app(install_type, app_path, bundle_id):
-    install_shell = 'xcrun simctl install booted {}'.format(app_path)
-    uninstall_shell = 'xcrun simctl uninstall booted {}'.format(bundle_id)
+    install_shell = 'xcrun simctl install booted \"{}\"'.format(app_path)
+    uninstall_shell = 'xcrun simctl uninstall booted \"{}\"'.format(bundle_id)
     if install_type == 'reinstall':
         run_shell(uninstall_shell)
     run_shell(install_shell)
