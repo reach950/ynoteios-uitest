@@ -26,9 +26,18 @@ def get_account(account_name):
     return devices[account_name]
 
 
+def get_mail_info(key):
+    os.chdir(os.path.abspath(os.path.dirname(__file__)))
+    yamlpath = os.path.join(os.path.pardir, 'config', 'mail.yaml')
+    with open(yamlpath, 'r', encoding='utf-8') as f:
+        mail = yaml.load(f)
+    return mail[key]
+
+
 def get_time():
     return datetime.now().strftime("%Y%m%d%H%M%S")
 
 
 if __name__ == '__main__':
     print(get_account('163'))
+    print(get_mail_info('receivers'))

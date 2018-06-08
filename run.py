@@ -9,6 +9,7 @@ import unittest
 import os
 from lib import HTMLTestRunner
 from lib import get_time
+from lib import send_mail
 
 
 # 用例路径
@@ -29,3 +30,4 @@ def run_all_case():
 
 if __name__ == '__main__':
     run_all_case()
+    send_mail(report_file)
