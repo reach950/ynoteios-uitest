@@ -48,8 +48,8 @@ class BaseCase(unittest.TestCase):
                 self.intro_page.accept_alert(timeout=15.0)
                 self.intro_page.handle_intro_page()
                 self.recent_page.switch_to_dest_page('mine')
-                self.user_id = utils.get_account('163')['userId']
-                self.password = utils.get_account('163')['password']
+                self.user_id = utils.parse_config('account', '163')['userId']
+                self.password = utils.parse_config('account', '163')['password']
                 self.login_page.login_by_netease_email(self.user_id, self.password)
                 self.recent_page.wait_sync_success()
 
@@ -67,3 +67,17 @@ class BaseCase(unittest.TestCase):
             self.note_page.tap_return_button()
             self.recent_page.wait_first_file_sync_success()
         self.folder_page.open_first_file()
+
+    # 处理第一次创建文档扫描时的引导页面
+    def handle_scan_guide(self):
+        self.recent_page.open_create_scan()
+        # 获取摄像头权限，模拟器上没有
+        self.add_photos_page.accept_alert()
+        if self.add_photos_page.is_scan_guide_display():
+            self.add_photos_page.tap_guide_button()
+            self.add_photos_page.tap_photograph_button()
+            self.preview_photos_page.tap_complete_button()
+            self.scan_page.close_scan_guide()
+            self.scan_page.tap_return_button()
+        else:
+            self.add_photos_page.tap_return_button()

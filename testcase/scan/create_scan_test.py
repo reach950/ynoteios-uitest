@@ -13,6 +13,7 @@ class TestCreateScan(BaseCase):
     """测试创建文档扫描"""
     def setUp(self):
         super().setUp()
+        super().handle_scan_guide()
 
     def tearDown(self):
         super().tearDown()

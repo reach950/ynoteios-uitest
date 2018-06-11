@@ -21,6 +21,12 @@ class ScanPage(BasePage):
     # 更多操作列表按钮
     multi_operation_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[3]')
 
+    # scan页滑动引导
+    scan_doc_tip_loc = (MobileBy.ACCESSIBILITY_ID, 'scan_doc_tip')
+
+    # scan页引导关闭按钮
+    scan_guide_close_button_loc = (MobileBy.IOS_PREDICATE, 'type == "XCUIElementTypeButton" AND visible == 1')
+
     # 检查scan_page是否显示
     def is_scan_page_display(self):
         return self.find_element(self.add_photos_button_loc)
@@ -42,3 +48,8 @@ class ScanPage(BasePage):
         # 收起更多操作列表
         self.tap_element(self.multi_operation_button_loc, check_display=False)
         return title.split('.')[0]
+
+    # 关闭引导
+    def close_scan_guide(self):
+        if self.find_element(self.scan_doc_tip_loc, check_display=False):
+            self.tap_element(self.scan_guide_close_button_loc, check_display=False)
