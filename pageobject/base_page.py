@@ -48,8 +48,15 @@ class BasePage:
     def tap_element(self, loc, check_display=True):
         ele = self.find_element(loc, check_display)
         rect = json.loads(ele.get_attribute('rect'))
-        x = rect['width'] / 2
-        y = rect['height'] / 2
+        window_size = self.driver.get_window_size()
+        ele_x = rect['x']
+        ele_y = rect['y']
+        ele_width = rect['width']
+        ele_height = rect['height']
+        window_width = window_size['width']
+        window_height = window_size['height']
+        x = ele_width / 2 if (ele_x + ele_width) <= window_width else (window_width - ele_x) / 2
+        y = ele_height / 2 if (ele_y + ele_height) <= window_height else (window_height - ele_y) / 2
         self.driver.execute_script('mobile: tap', {'x': x, 'y': y, 'element': ele})
 
     # 重新封装窗口点击操作
