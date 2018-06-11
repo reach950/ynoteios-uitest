@@ -8,7 +8,5 @@ __author__ = 'kejie'
 from .appium_driver import AppiumDriver
 from .HTMLTestRunner import HTMLTestRunner
 from .utils import get_time
-from .utils import get_device
-from .utils import get_mail_info
-from .utils import get_account
+from .utils import parse_config
 from .send_report import send_mail

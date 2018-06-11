@@ -10,28 +10,12 @@ import os
 from datetime import datetime
 
 
-def get_device(device_name):
+def parse_config(file_name, key):
     os.chdir(os.path.abspath(os.path.dirname(__file__)))
-    yamlpath = os.path.join(os.path.pardir, 'config', 'devices.yaml')
+    yamlpath = os.path.join(os.path.pardir, 'config', '{}.yaml'.format(file_name))
     with open(yamlpath, 'r', encoding='utf-8') as f:
-        devices = yaml.load(f)
-    return devices[device_name]
-
-
-def get_account(account_name):
-    os.chdir(os.path.abspath(os.path.dirname(__file__)))
-    yamlpath = os.path.join(os.path.pardir, 'config', 'account.yaml')
-    with open(yamlpath, 'r', encoding='utf-8') as f:
-        devices = yaml.load(f)
-    return devices[account_name]
-
-
-def get_mail_info(key):
-    os.chdir(os.path.abspath(os.path.dirname(__file__)))
-    yamlpath = os.path.join(os.path.pardir, 'config', 'mail.yaml')
-    with open(yamlpath, 'r', encoding='utf-8') as f:
-        mail = yaml.load(f)
-    return mail[key]
+        config = yaml.load(f)
+    return config[key]
 
 
 def get_time():
@@ -39,5 +23,4 @@ def get_time():
 
 
 if __name__ == '__main__':
-    print(get_account('163'))
-    print(get_mail_info('receivers'))
+    print(parse_config('account', 'mail')['password'])

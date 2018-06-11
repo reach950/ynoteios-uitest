@@ -9,8 +9,7 @@ __author__ = 'kejie'
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
-from lib import get_mail_info
-from lib import get_account
+from lib import parse_config
 import os
 from email.utils import parseaddr, formataddr
 
@@ -22,11 +21,11 @@ def _format_addr(s):
 
 # 发送邮件
 def send_mail(file):
-    mail_host = get_mail_info('host')
-    mail_user = get_account('mail')['userId']
-    mail_pass = get_account('mail')['password']
-    sender = get_mail_info('sender')
-    receivers = get_mail_info('receivers')
+    mail_host = parse_config('mail', 'host')
+    mail_user = parse_config('account', 'mail')['userId']
+    mail_pass = parse_config('account', 'mail')['password']
+    sender = parse_config('mail', 'sender')
+    receivers = parse_config('mail', 'receivers')
 
     with open(file, 'rb') as f:
         mail_msg = f.read()

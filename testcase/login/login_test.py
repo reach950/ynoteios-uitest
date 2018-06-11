@@ -14,8 +14,8 @@ class TestLogin(BaseCase):
 
     def setUp(self):
         super().setUp()
-        self.user_id = utils.get_account('163')['userId']
-        self.password = utils.get_account('163')['password']
+        self.user_id = utils.parse_config('account', '163')['userId']
+        self.password = utils.parse_config('account', '163')['password']
 
     def tearDown(self):
         super().tearDown()

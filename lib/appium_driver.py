@@ -12,7 +12,7 @@ from lib import utils
 class AppiumDriver:
 
     def __init__(self):
-        desired_caps = utils.get_device('iPhoneX Simulator')
+        desired_caps = utils.parse_config('devices', 'iPhoneX Simulator')
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
 
     def get_driver(self):
