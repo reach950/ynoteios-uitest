@@ -1,0 +1,5 @@
+# 安装方式，cover为覆盖安装，reinstall为卸载安装
+installType: 'cover'
+
+# 指定devices中的设备
+device: 'iPhoneX Simulator'

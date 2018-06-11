@@ -10,3 +10,4 @@ from .HTMLTestRunner import HTMLTestRunner
 from .utils import get_time
 from .utils import parse_config
 from .send_report import send_mail
+from .install_app import open_device, install_app, uninstall_app
