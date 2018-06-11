@@ -47,7 +47,7 @@ class AddPhotosPage(BasePage):
 
     # 是否显示文档扫描引导
     def is_scan_guide_display(self):
-        if self.find_element(self.guide_pic_loc, check_display=False, wait=10):
+        if self.find_element(self.guide_pic_loc, check_display=False, wait=5):
             return True
         else:
             return False
