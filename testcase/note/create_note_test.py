@@ -11,7 +11,7 @@ from lib import get_time
 
 
 class TestCreateNote(BaseCase):
-
+    """测试创建笔记"""
     def setUp(self):
         # 生成笔记标题
         self.title = u'create_textnote_{}'.format(get_time())
@@ -20,7 +20,8 @@ class TestCreateNote(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    def test_create_note(self):
+    def test_create_note_with_no_content(self):
+        """创建没有内容的笔记"""
         self.recent_page.open_create_file_from_tabbar('note')
         self.note_page.input_note_title(self.title)
         self.note_page.tap_return_button()

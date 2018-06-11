@@ -12,7 +12,7 @@ import json
 
 
 class TestCreateHandWrite(BaseCase):
-
+    """测试创建手写笔记"""
     def setUp(self):
         # 生成手写笔记标题
         self.title = u'create_hand_write_{}'.format(get_time())
@@ -22,6 +22,7 @@ class TestCreateHandWrite(BaseCase):
         super().tearDown()
 
     def test_create_hand_write(self):
+        """创建一张图片的手写笔记"""
         self.recent_page.open_create_file_from_tabbar('hand_write')
         rect = json.loads(self.hand_write_page.get_hand_write_zone_rect())
         from_x = float(rect['x'])

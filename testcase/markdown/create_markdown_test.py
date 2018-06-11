@@ -11,7 +11,7 @@ from lib import get_time
 
 
 class TestCreateMarkdown(BaseCase):
-
+    """测试创建markdown"""
     def setUp(self):
         # 生成markdown标题
         self.title = u'create_markdown_{}'.format(get_time())
@@ -20,7 +20,8 @@ class TestCreateMarkdown(BaseCase):
     def tearDown(self):
         super().tearDown()
 
-    def test_create_markdown(self):
+    def test_create_markdown_with_no_content(self):
+        """创建没有内容的markdown"""
         self.recent_page.open_create_file_from_tabbar('markdown')
         # md显示为编辑状态
         self.assertTrue(self.markdown_page.is_md_edit())

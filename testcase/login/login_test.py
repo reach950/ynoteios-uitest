@@ -11,7 +11,7 @@ from lib import utils
 
 
 class TestLogin(BaseCase):
-
+    """登录测试"""
     def setUp(self):
         super().setUp()
         self.user_id = utils.parse_config('account', '163')['userId']
@@ -21,6 +21,7 @@ class TestLogin(BaseCase):
         super().tearDown()
 
     def test_163_login(self):
+        """登录163账号"""
         self.recent_page.switch_to_dest_page('mine')
         self.mine_page.logout()
         self.login_page.login_by_netease_email(self.user_id, self.password)

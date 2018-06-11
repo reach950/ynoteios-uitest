@@ -10,14 +10,15 @@ from testcase import BaseCase
 
 
 class TestCreateLinkCollectNote(BaseCase):
-
+    """测试创建链接收藏笔记"""
     def setUp(self):
         super().setUp()
 
     def tearDown(self):
         super().tearDown()
 
-    def test_create_link_collect_note(self):
+    def test_create_youdao_collect_note(self):
+        """收藏有道官网"""
         self.recent_page.open_create_file_from_tabbar('link_collect')
         self.recent_page.input_link('www.youdao.com')
         self.recent_page.click_alert_button('确认')

@@ -6,19 +6,19 @@
 __author__ = 'kejie'
 
 import unittest
-from lib import get_time
 from testcase import BaseCase
 
 
 class TestCreateScan(BaseCase):
-
+    """测试创建文档扫描"""
     def setUp(self):
         super().setUp()
 
     def tearDown(self):
         super().tearDown()
 
-    def test_create_scan(self):
+    def test_create_scan_by_import_pic(self):
+        """通过相册导入第一张图片"""
         self.recent_page.open_create_scan()
         # 获取摄像头权限，模拟器上没有
         self.add_photos_page.accept_alert()

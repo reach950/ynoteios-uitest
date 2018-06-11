@@ -11,7 +11,7 @@ from lib import get_time
 
 
 class TestUploadPic(BaseCase):
-
+    """测试上传图片"""
     def setUp(self):
         self.time = int(get_time())
         super().setUp()
@@ -20,6 +20,7 @@ class TestUploadPic(BaseCase):
         super().tearDown()
 
     def test_upload_pic(self):
+        """上传相册第一张图片"""
         self.recent_page.open_create_file_from_tabbar('pic')
         # 获取相册权限
         self.recent_page.accept_alert()
