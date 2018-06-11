@@ -40,7 +40,7 @@ def parse_args():
     parser.add_argument('-d', '--device', dest="device", required=True,
                         help="Specify devices, real device or simulator.")
     '''
-    parser.add_argument('-p', '--appPath', dest="app_path",  required=True, help="Specify install app path.")
+    parser.add_argument('-p', '--appPath', dest="app_path", help="Specify install app path.")
     args = parser.parse_args()
     return args
 
@@ -55,8 +55,10 @@ def run_all_case():
 
 if __name__ == '__main__':
     open_device(device_name, platform_version)
-    if install_type == 'reinstall':
-        uninstall_app(bundle_id)
-    install_app(parse_args().app_path)
+    app_path = parse_args().app_path
+    if app_path:
+        if install_type == 'reinstall':
+            uninstall_app(bundle_id)
+        install_app(app_path)
     run_all_case()
     send_mail(report_file)
