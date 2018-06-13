@@ -10,9 +10,8 @@ import os
 import argparse
 from lib import HTMLTestRunner
 from lib import get_time
-from lib import parse_config
 from lib import send_mail
-from lib import open_device, install_app, uninstall_app
+from lib import install
 
 
 # 用例路径
@@ -23,13 +22,6 @@ result_path = os.path.join(os.path.abspath(os.curdir), 'result', str(get_time())
 report_title = 'Example用例执行报告'
 desc = '用于展示修改样式后的HTMLTestRunner'
 report_file = os.path.join(result_path, 'ExampleReport.html')
-
-# app安装信息
-install_type = parse_config('run_info', 'installType')
-device = parse_config('run_info', 'device')
-device_name = parse_config('devices', device)['deviceName']
-platform_version = parse_config('devices', device)['platformVersion']
-bundle_id = parse_config('devices', device)['bundleId']
 
 
 def parse_args():
@@ -54,11 +46,7 @@ def run_all_case():
 
 
 if __name__ == '__main__':
-    open_device(device_name, platform_version)
     app_path = parse_args().app_path
-    if app_path:
-        if install_type == 'reinstall':
-            uninstall_app(bundle_id)
-        install_app(app_path)
+    install(app_path)
     run_all_case()
     send_mail(report_file)

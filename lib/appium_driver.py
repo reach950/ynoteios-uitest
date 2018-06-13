@@ -12,9 +12,10 @@ from lib import utils
 class AppiumDriver:
 
     def __init__(self):
+        appium_server_url = utils.parse_config('run_info', 'appium_server_url')
         device = utils.parse_config('run_info', 'device')
         desired_caps = utils.parse_config('devices', device)
-        self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
+        self.driver = webdriver.Remote(appium_server_url, desired_caps)
 
     def get_driver(self):
         return self.driver

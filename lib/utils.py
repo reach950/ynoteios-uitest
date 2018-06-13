@@ -7,6 +7,7 @@ __author__ = 'kejie'
 
 import yaml
 import os
+import subprocess
 from datetime import datetime
 
 
@@ -20,6 +21,13 @@ def parse_config(file_name, key):
 
 def get_time():
     return datetime.now().strftime("%Y%m%d%H%M%S")
+
+
+def run_shell(cmd_shell):
+    process = subprocess.Popen(cmd_shell, shell=True)
+    process.wait()
+    # return_code = process.returncode
+    # assert return_code == 0
 
 
 if __name__ == '__main__':

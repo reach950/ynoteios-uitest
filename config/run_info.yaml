@@ -3,3 +3,6 @@ installType: 'cover'
 
 # 指定devices中的设备
 device: 'iPhoneX Simulator'
+
+# appium服务器url
+appium_server_url: 'http://127.0.0.1:4723/wd/hub'

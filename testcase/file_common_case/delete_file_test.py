@@ -7,6 +7,7 @@ __author__ = 'kejie'
 
 import unittest
 from testcase import BaseCase
+import time
 
 
 class TestDeleteFile(BaseCase):
@@ -20,9 +21,10 @@ class TestDeleteFile(BaseCase):
 
     def test_delete_first_file_from_list(self):
         """从最新列表删除第一个文件"""
-        original_text = self.recent_page.get_first_file_first_static_text()
+        file_number = self.recent_page.get_file_number()
         self.recent_page.delete_first_file()
-        self.assertEqual(original_text, self.recent_page.get_first_file_first_static_text(), '文件删除失败')
+        time.sleep(3)
+        self.assertEqual(file_number - 1, self.recent_page.get_file_number(), '文件删除失败')
 
 
 if __name__ == '__main__':
