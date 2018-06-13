@@ -8,6 +8,7 @@ __author__ = 'kejie'
 from pageobject.base_page import BasePage
 from appium.webdriver.common.mobileby import MobileBy
 import time
+import json
 
 
 class MinePage(BasePage):
@@ -24,7 +25,8 @@ class MinePage(BasePage):
 
     # 退出登录
     def logout(self):
-        while self.find_element(self.free_network_flow_loc, check_display=False).get_attribute('rect')['y'] == 514:
+        while not json.loads(self.find_element(self.free_network_flow_loc,
+                                               check_display=False).get_attribute('rect'))['y'] == 514:
             self.swipe('up')
             time.sleep(3)
         self.tap_window(self.logout_button_loc['x'], self.logout_button_loc['y'])
