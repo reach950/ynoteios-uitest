@@ -8,6 +8,7 @@ __author__ = 'kejie'
 
 import smtplib
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from email.header import Header
 from lib import parse_config
 import os
@@ -27,10 +28,16 @@ def send_mail(file):
     sender = parse_config('mail', 'sender')
     receivers = parse_config('mail', 'receivers')
 
+    message = MIMEMultipart('alternative')
+
     with open(file, 'rb') as f:
         mail_msg = f.read()
 
-    message = MIMEText(mail_msg, 'html', 'utf-8')
+    message.attach(MIMEText(mail_msg, 'html', 'utf-8'))
+    att = MIMEText(mail_msg, 'base64', 'utf-8')
+    att["Content-Type"] = 'application/octet-stream'
+    att["Content-Disposition"] = 'attachment; filename="{}"'.format(os.path.basename(file))
+    message.attach(att)
     message['From'] = _format_addr(sender)  # 发送者
     message['To'] = ','.join([_format_addr(i) for i in receivers])  # 接收者
     subject = 'ynoteios test report'
