@@ -14,6 +14,7 @@ from lib import get_time
 from lib import send_mail
 from lib import install
 from lib import AppiumServer
+from multiprocessing import Process
 
 
 # 用例路径
@@ -52,8 +53,14 @@ def run_all_case():
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, filename=client_log, filemode='w',
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    # 启动appium服务器
+    p = Process(target=AppiumServer.run)
+    p.start()
+    # 安装笔记客户端
     app_path = parse_args().app_path
     install(app_path)
-    AppiumServer.run()
+    # 执行用例
+    AppiumServer.wait_started()
     run_all_case()
+    # 发送测试报告
     send_mail(report_file)
