@@ -51,7 +51,7 @@ class BaseCase(unittest.TestCase):
                 self.user_id = utils.parse_config('account', '163')['userId']
                 self.password = utils.parse_config('account', '163')['password']
                 self.login_page.login_by_netease_email(self.user_id, self.password)
-                self.recent_page.wait_sync_success()
+                self.recent_page.wait_first_sync_success()
 
     def open_note_from_note_folder(self):
         self.recent_page.switch_to_dest_page('folder')

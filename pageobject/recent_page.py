@@ -117,7 +117,7 @@ class RecentPage(BasePage):
             return False
 
     # 第一次登录时，等待页面同步成功
-    def wait_sync_success(self, timeout=30.0):
+    def wait_first_sync_success(self, timeout=30.0):
         start_time = time.time()
         while time.time() - start_time < timeout:
             first_sync_file_number = self.get_file_number()
@@ -129,10 +129,12 @@ class RecentPage(BasePage):
     def wait_first_file_sync_success(self, timeout=15.0):
         # 第一个文件的同步按钮
         first_file_sync_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton')
-        start_time = time.time()
-        while time.time() - start_time < timeout:
-            if not self.find_element(first_file_sync_button_loc, wait=5):
-                return
+        first_file_sync_button = self.find_element(first_file_sync_button_loc)
+        if first_file_sync_button:
+            start_time = time.time()
+            while time.time() - start_time < timeout:
+                if not self.find_element(first_file_sync_button_loc, wait=5):
+                    return
 
     # 获取最新列表文件个数
     def get_file_number(self):
