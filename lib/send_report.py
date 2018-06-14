@@ -23,8 +23,8 @@ def _format_addr(s):
 # 发送邮件
 def send_mail(file):
     mail_host = parse_config('mail', 'host')
-    mail_user = parse_config('account', 'mail')['userId']
-    mail_pass = parse_config('account', 'mail')['password']
+    mail_user = parse_config('mail', 'login')['userId']
+    mail_pass = parse_config('mail', 'login')['password']
     sender = parse_config('mail', 'sender')
     receivers = parse_config('mail', 'receivers')
 
