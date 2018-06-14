@@ -16,7 +16,7 @@ class AppiumServer:
 
     @classmethod
     def _start_server(cls):
-        cmd_shell = 'appium &'
+        cmd_shell = 'appium --log-timestamp --local-timezone'
         utils.run_shell(cmd_shell)
 
     @classmethod

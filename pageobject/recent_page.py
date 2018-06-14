@@ -129,11 +129,11 @@ class RecentPage(BasePage):
     def wait_first_file_sync_success(self, timeout=15.0):
         # 第一个文件的同步按钮
         first_file_sync_button_loc = (MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeButton')
-        first_file_sync_button = self.find_element(first_file_sync_button_loc, wait=10)
+        first_file_sync_button = self.find_element(first_file_sync_button_loc, check_display=False, wait=10)
         if first_file_sync_button:
             start_time = time.time()
             while time.time() - start_time < timeout:
-                if not self.find_element(first_file_sync_button_loc, wait=3):
+                if not self.find_element(first_file_sync_button_loc, check_display=False, wait=3):
                     return
 
     # 获取最新列表文件个数
