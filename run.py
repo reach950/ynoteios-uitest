@@ -8,6 +8,7 @@ __author__ = 'kejie'
 import unittest
 import os
 import argparse
+import logging
 from lib import HTMLTestRunner
 from lib import get_time
 from lib import send_mail
@@ -20,9 +21,11 @@ case_path = os.path.join(os.path.abspath(os.curdir), 'testcase')
 
 # 测试报告信息
 result_path = os.path.join(os.path.abspath(os.curdir), 'result', str(get_time()))
+os.mkdir(result_path)
 report_title = '有道云笔记iOS用例执行报告'
 desc = '有道云笔记iOS用例执行报告'
 report_file = os.path.join(result_path, 'YnoteiosTestReport.html')
+client_log = os.path.join(result_path, 'client.log')
 
 
 def parse_args():
@@ -39,14 +42,16 @@ def parse_args():
 
 
 def run_all_case():
+    logging.info('开始执行用例')
     all_case = unittest.defaultTestLoader.discover(case_path, pattern='*_test.py')
-    os.mkdir(result_path)
     with open(report_file, 'wb') as report:
         runner = HTMLTestRunner(stream=report, title=report_title, description=desc)
         runner.run(all_case)
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO, filename=client_log, filemode='w',
+                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     app_path = parse_args().app_path
     install(app_path)
     AppiumServer.run()

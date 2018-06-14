@@ -7,6 +7,7 @@ __author__ = 'kejie'
 
 from lib import run_shell
 from lib import parse_config
+import logging
 
 
 def _open_device(device_name, platform_version):
@@ -27,6 +28,7 @@ def _uninstall_app(bundle_id):
 
 def install(app_path):
     # app安装信息
+    logging.info('开始安装app')
     install_type = parse_config('run_info', 'installType')
     device = parse_config('run_info', 'device')
     device_name = parse_config('devices', device)['deviceName']

@@ -36,11 +36,11 @@ class AppiumServer:
 
     @classmethod
     def run(cls, timeout=30.0):
+        logging.info('开始启动appium server')
         if cls._is_server_started():
             logging.info('appium server正在运行中！')
             return
         else:
-            logging.info('开始启动appium server')
             cls._start_server()
             start_time = time.time()
             while time.time() - start_time < timeout:
