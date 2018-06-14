@@ -6,6 +6,7 @@
 __author__ = 'kejie'
 
 from urllib import request
+from urllib.error import URLError
 from lib import utils
 import time
 import logging
@@ -27,12 +28,19 @@ class AppiumServer:
     def _is_server_started(cls):
         appium_server_url = utils.parse_config('run_info', 'appium_server_url')
         url = '{}/status'.format(appium_server_url)
-        with request.urlopen(url, timeout=5) as response:
+        response = None
+        try:
+            response = request.urlopen(url, timeout=5)
             if str(response.getcode()).startswith("2"):
                 print(response.getcode())
                 return True
             else:
                 return False
+        except URLError:
+            return False
+        finally:
+            if response:
+                response.close()
 
     @classmethod
     def run(cls, timeout=30.0):
@@ -50,3 +58,7 @@ class AppiumServer:
             else:
                 logging.info('appium server启动超时！')
                 raise RuntimeError
+
+
+if __name__ == '__main__':
+    AppiumServer.run()
