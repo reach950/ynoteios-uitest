@@ -10,4 +10,3 @@ from .HTMLTestRunner import HTMLTestRunner
 from .utils import get_time, parse_config, run_shell
 from .send_report import send_mail
 from .install_app import install
-from .appium_server import AppiumServer
