@@ -1,0 +1,8 @@
+host: 'mail.xxx.com'
+sender: 'xxx'
+receivers:
+  - 'xxx'
+  - 'xxx'
+'login':
+  userId: 'xxx'
+  password: '**'
